@@ -16,7 +16,7 @@
  		) VALUES (
  			#{loginId}
  			, #{password}
- 			, 'guest'
+ 			, 'member'
  			, #{name}
  			, #{nickName}
  			, now()
