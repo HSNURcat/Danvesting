@@ -38,7 +38,7 @@
 								<span>ID</span>
 							</div>
 							<div class="col-9">
-								<input type="text" class="col-11" id="userId">
+								<input type="text" class="form-control col-11" id="userId">
 							</div>
 						</div>
 						
@@ -47,7 +47,7 @@
 								<span>PW</span>
 							</div>
 							<div class="col-9">
-								<input type="password" class="col-11" id="password">
+								<input type="password" class="form-control col-11" id="password">
 							</div>
 						</div>
 						
@@ -56,7 +56,7 @@
 								<span>PW Confirm</span>
 							</div>
 							<div class="col-9">
-								<input type="password" class="col-11" id="password-confirm">
+								<input type="password" class="form-control col-11" id="password-confirm">
 							</div>
 						</div>
 						
@@ -65,7 +65,7 @@
 								<span>name</span>
 							</div>
 							<div class="col-9">
-								<input type="text" class="col-11" id="name">
+								<input type="text" class="form-control col-11" id="name">
 							</div>
 						</div>
 
@@ -74,14 +74,14 @@
 								<span>NickName</span>
 							</div>
 							<div class="col-9">
-								<input type="text" class="col-11" id="nickname">
+								<input type="text" class="form-control col-11" id="nickname">
 							</div>
 						</div>
 						
 						<div class="d-flex justify-content-between my-3 mx-5">
 							<div></div>
 							<div>
-								<button type="button" class="btn btn-info" id="signIn-btn">가입하기</button>
+								<button type="button" class="btn btn-info" id="signUp-btn">가입하기</button>
 							</div>
 						</div>
 						
@@ -97,7 +97,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#signIn-btn").on("click",function() {
+			$("#signUp-btn").on("click",function() {
 				var userId = $("#userId").val();
 				var password = $("#password").val();
 				var passwordConfirm = $("#password-confirm").val();
