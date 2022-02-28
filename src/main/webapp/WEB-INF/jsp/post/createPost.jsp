@@ -27,6 +27,11 @@
 			
 			<section class="w-100 d-flex justify-content-center mb-5">
 				<div class="contentBox">
+					<%-- 제목 구역 --%>
+					<div>
+						<input type="text" class="form-control" placeholder="Input title...." id="postTitle">
+					</div>
+					
 					<%-- 이미지 구역 --%>
 					<div class="my-2">
 						<%-- 이미지 업로드 박스 --%>
@@ -102,7 +107,8 @@
 			});
 			
 			$("#submitBtn").on("click", function() {
-				let postText = $("#postText").val()
+				let postTitle = $("#postTitle").val();
+				let postText = $("#postText").val();
 				let file = $("#input-file").val().trim();
 				
 				if(postText == "") {
@@ -111,6 +117,7 @@
 				}
 				
 				var formData = new FormData();
+				formData.append("postTitle", postTitle);
 				formData.append("postText", postText);
 				formData.append("file", $("#input-file")[0].files[0]);
 				

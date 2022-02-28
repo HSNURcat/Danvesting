@@ -8,6 +8,7 @@
  		(
  			`writerId`
  			, `nickName`
+ 			, `title`
  			, `content`
  			, `imagePath`
  			, `createdAt`
@@ -15,12 +16,41 @@
  		) VALUES (
 			#{userId}
 			, #{nickName}	
+			, #{postTitle}	
 			, #{postText}	
 			, #{filePath}
 			, now()
 			, now()
  		);
 	</insert>
-
+	
+	<select id="getPost" resultType="com.dandan.danvesting.post.model.Post">
+		SELECT
+			`id`
+			, `writerId`
+ 			, `nickName`
+ 			, `title`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`;
+	</select>
+	
+	<select id="getPostDetail" resultType="com.dandan.danvesting.post.model.Post">
+		SELECT
+			`id`
+			, `writerId`
+ 			, `nickName`
+ 			, `title`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{postId};
+	</select>
 </mapper>
-
