@@ -23,5 +23,9 @@ public class UserBO {
 		
 		return userDAO.selectUser(loginId, encryptedPW);
 	}
+	
+	public int checkDuplication(String longinId) {
+		return userDAO.selectUserByLoginId(longinId);
+	}
 
 }

@@ -33,13 +33,34 @@
 				<div class="signUp-box">
 				
 					<div class="input-box d-flex flex-column align-items-between my-5">
-					
-						<div class="d-flex m-3">
-							<div class="col-3">
-								<span>ID</span>
+						<%-- ID부분 --%>
+						<div class="m-3">
+							<%-- ID input부분 --%>
+							<div class="d-flex">
+								<div class="col-3">
+									<span>ID</span>
+								</div>
+								<div class="col-9">
+									<input type="text" class="form-control col-11" id="userId">
+								</div>
 							</div>
-							<div class="col-9">
-								<input type="text" class="form-control col-11" id="userId">
+							
+							<%-- ID 중복여부 텍스트 부분 --%>
+							<div class="d-flex">
+								<div class="col-3"></div>
+								<div class="col-9">
+									<div id="IDCheckFormat" class="m-3 d-none">
+										<span class="text-warning">ID must follow email address format</span>
+									</div>
+									
+									<div id="IDCheckFalse" class="m-3 d-none">
+										<span class="text-danger">This ID already exist.</span>
+									</div>
+									
+									<div id="IDCheckTrue" class="m-3 d-none">
+										<span class="text-info">OK</span>
+									</div>
+								</div>
 							</div>
 						</div>
 						
@@ -97,6 +118,49 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var duplicationOfID = true;
+			
+			$("#userId").on("change", function() {
+				var userId = $(this).val();
+				
+				if(userId=="") {
+					//ID가 지워졌을때
+					$("#IDCheckFormat").addClass("d-none");//<이메일 포멧 작성토록 표기>숨김
+					$("#IDCheckFalse").addClass("d-none");//<사용불가 계정임을 표기>숨김
+					$("#IDCheckTrue").addClass("d-none");//<사용가능 계정임을 표기>숨김
+				}
+				else if(!(userId.includes("@") && userId.includes("."))) {
+					//ID포맷이 email주소가 아닐때
+					$("#IDCheckFormat").removeClass("d-none");//<이메일 포멧 작성토록 표기>숨김
+					$("#IDCheckFalse").addClass("d-none");//<사용불가 계정임을 표기>숨김
+					$("#IDCheckTrue").addClass("d-none");//<사용가능 계정임을 표기>숨김
+				}
+				
+				$.ajax({
+					type:"post",
+					url:"/user/check_duplication",
+					data:{"loginId":userId},
+					success:function(data) {
+						if(data.is_duplication == "false" && (userId.includes("@") && userId.includes("."))) { 
+							// ID가 중복되지 않고, ID포맷이 email주소일때
+							$("#IDCheckFormat").addClass("d-none");//<이메일 포멧 작성토록 표기>숨김
+							$("#IDCheckFalse").addClass("d-none");//<사용불가 계정임을 표기>숨김
+							$("#IDCheckTrue").removeClass("d-none");//<사용가능 계정임을 표기>표시
+							duplicationOfID = false;
+						} 
+						else if(data.is_duplication == "true" && (userId.includes("@") && userId.includes("."))) {
+							// ID가 중복되고, ID포맷이 email주소일때
+							$("#IDCheckFormat").addClass("d-none");//<이메일 포멧 작성토록 표기>숨김
+							$("#IDCheckFalse").removeClass("d-none");//<사용불가 계정임을 표기>표시
+							$("#IDCheckTrue").addClass("d-none");//<사용가능 계정임을 표기>숨김
+						}
+					},
+					error:function() {
+						alert("에러 발생");
+					}
+				});
+			});
+			
 			$("#signUp-btn").on("click",function() {
 				var userId = $("#userId").val();
 				var password = $("#password").val();
@@ -110,7 +174,7 @@
 				}
 				
 				if(!(userId.includes("@") && userId.includes("."))) {
-					alert("The ID is unavailable. ID must follow email address format");
+					alert("This ID is unavailable. ID must follow email address format");
 					return false;
 				}
 				

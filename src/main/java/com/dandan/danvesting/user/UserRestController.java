@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 	
+	// 회원가입
 	@PostMapping("/sign_up")
 	public Map<String, String> signUp(
 			@RequestParam("loginId") String loginId,
@@ -43,7 +45,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	
+	//로그인
 	@PostMapping("/sign_in")
 	public Map<String, String> signIn(
 			@RequestParam("loginId") String loginId,
@@ -74,5 +76,22 @@ public class UserRestController {
 		
 		return result;
 	}
+	
+	//중복가입 방지
+	@PostMapping("/check_duplication")
+	public Map<String, String> checkDuplication(@RequestParam("loginId") String loginId) {
+		
+		int count = userBO.checkDuplication(loginId);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if (count != 0) {//중복될때
+			result.put("is_duplication", "true");//true반환
+		} else {
+			result.put("is_duplication", "false");
+		}
+		return result;
+	}
+	
 	
 }
