@@ -2,6 +2,9 @@ package com.dandan.danvesting.post;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dandan.danvesting.post.bo.PostBO;
 import com.dandan.danvesting.post.model.Post;
+import com.dandan.danvesting.post.model.PostDetail;
 
 @Controller
 @RequestMapping("/post")
@@ -34,11 +38,14 @@ public class PostController {
 	}
 	
 	@GetMapping("/content/list_detail_view")
-	public String getPostDetail(@RequestParam("postId") int postId, Model model) {
+	public String getPostDetail(@RequestParam("postId") int postId, Model model, HttpServletRequest request) {
 		
-		Post post = postBO.getPostDetail(postId);
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
 		
-		model.addAttribute("postDetail", post);
+		PostDetail postDetail = postBO.getPostDetail(postId, userId);
+		
+		model.addAttribute("postDetail", postDetail);
 		
 		return "post/postDetail";
 	}

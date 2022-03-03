@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.dandan.danvesting.post.like.dao.LikeDAO">
+ 	<insert id="insertPostLike" parameterType="map">
+ 		INSERT INTO `like`
+ 		(
+ 			`postOrComment` 
+ 			, `likeOrDislike`
+			, `userId`
+			, `nickName`
+			, `postId`
+			, `commentId`
+			, `createdAt`
+			, `updatedAt`
+ 		) VALUES (
+ 			1
+ 			, 1
+ 			, #{userTablePK}
+ 			, #{nickName}
+ 			, #{postId}
+ 			, NULL
+ 			, now()
+ 			, now()
+ 		);
+ 	</insert>
+ 	
+ 	<select id="selectPostLikeCount" parameterType="int" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`likeOrDislike` = 1;
+ 	</select>
+ 	
+ 	<select id="selectPostLikeCountByUserId" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`likeOrDislike` = 1
+ 		AND
+ 			`userId` = #{userId};
+ 	</select>
+ 	
+ 	<delete id="deletePostLikeByUserId" parameterType="map">
+ 		DELETE FROM 
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`likeOrDislike` = 1
+ 		AND
+ 			`userId` = #{userId};
+ 	</delete>
+ 	
+ 	 <insert id="insertPostDislike" parameterType="map">
+ 		INSERT INTO `like`
+ 		(
+ 			`postOrComment` 
+ 			, `likeOrDislike`
+			, `userId`
+			, `nickName`
+			, `postId`
+			, `commentId`
+			, `createdAt`
+			, `updatedAt`
+ 		) VALUES (
+ 			1
+ 			, 0
+ 			, #{userTablePK}
+ 			, #{nickName}
+ 			, #{postId}
+ 			, NULL
+ 			, now()
+ 			, now()
+ 		);
+ 	</insert>
+ 	
+ 	<select id="selectPostDislikeCount" parameterType="int" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`likeOrDislike` = 0;
+ 	</select>
+ 	
+ 	<select id="selectPostDislikeCountByUserId" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`likeOrDislike` = 0
+ 		AND
+ 			`userId` = #{userId};
+ 	</select>
+ 	
+ 	<delete id="deletePostDislikeByUserId" parameterType="map">
+ 		DELETE FROM 
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`likeOrDislike` = 0
+ 		AND
+ 			`userId` = #{userId};
+ 	</delete>
+ </mapper>

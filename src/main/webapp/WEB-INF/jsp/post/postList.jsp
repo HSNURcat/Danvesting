@@ -11,6 +11,9 @@
 		<link rel="stylesheet"  href="/static/bootstrap-4.6.1-dist/css/bootstrap.css" type="text/css">
 		<script src="/static/bootstrap-4.6.1-dist/js/bootstrap.js"></script>
 		
+		<!-- bootstrap_icon-1.8.1 -->
+		<link rel="stylesheet" href="/static/bootstrap_icons-1.8.1/font/bootstrap-icons.css">
+		
 		<!-- jQuery 3.6.0 -->
 		<script src="/static/js/jquery-3.6.0.min.js"></script>
 
