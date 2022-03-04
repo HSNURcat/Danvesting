@@ -2,13 +2,17 @@ package com.dandan.danvesting.post.model;
 
 import java.util.List;
 
+import com.dandan.danvesting.post.comment.like.model.CommentLike;
 import com.dandan.danvesting.post.comment.model.Comment;
+import com.dandan.danvesting.post.comment.model.CommentDetail;
 
 public class PostDetail {
 	private Post post;//post테이블 컬럼들
 	private int postLikeCount;//게시물 좋아요 데이터
 	private int postDislikeCount;//게시물 좋아요 데이터
-	private List<Comment> comment;//comment테이블 컬럼들
+	private boolean isPostLike; //게시물 좋아요 여부
+	private boolean isPostDislike; //게시물 싫어요 여부
+	private List<CommentDetail> commentDetailList;//comment테이블 컬럼들 + 댓글 좋아요/싫어요
 	
 	public Post getPost() {
 		return post;
@@ -28,11 +32,23 @@ public class PostDetail {
 	public void setPostDislikeCount(int postDislikeCount) {
 		this.postDislikeCount = postDislikeCount;
 	}
-	public List<Comment> getComment() {
-		return comment;
+	public boolean isPostLike() {
+		return isPostLike;
 	}
-	public void setComment(List<Comment> comment) {
-		this.comment = comment;
+	public void setPostLike(boolean isPostLike) {
+		this.isPostLike = isPostLike;
+	}
+	public boolean isPostDislike() {
+		return isPostDislike;
+	}
+	public void setPostDislike(boolean isPostDislike) {
+		this.isPostDislike = isPostDislike;
+	}
+	public List<CommentDetail> getCommentDetailList() {
+		return commentDetailList;
+	}
+	public void setCommentDetailList(List<CommentDetail> commentDetailList) {
+		this.commentDetailList = commentDetailList;
 	}
 	
 }

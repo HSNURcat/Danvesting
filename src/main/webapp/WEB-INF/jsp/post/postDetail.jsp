@@ -128,18 +128,67 @@
 				</div>
 				
 				<%-- 댓글 출력 구역 --%>
-				<c:forEach var="postComment" items="${postDetail.comment}">
+				<c:forEach var="postComment" items="${postDetail.commentDetailList}" >
 				<div class="commentArea ">
 					<%-- 반복 구역 시작 --%>
-					<div class="comment d-flex">
+					<div class="comment d-flex align-items-center my-3">
+						<%-- 댓글 작성자 --%>
 						<div class="col-2">
-							${postComment.nickName }
+							<h3>${postComment.comment.nickName }</h3>
 						</div>
+						
+						<%-- 댓글 내용 --%>
 						<div class="col-8">
-							${postComment.content }
+							${postComment.comment.content }
 						</div>
-						<div class="col-2">
-							좋아요/싫어요
+						
+						<%-- 댓글 좋아요/싫어요 부분 --%>
+						<div class="col-2 d-flex">
+							<%-- like부분 --%>
+							<div class="d-flex mr-5 align-items-center">
+								<%-- like아이콘 --%>
+								<div>
+									<a class="likeCommentBtn" data-post-id="${postDetail.post.id }" data-comment-id="${postComment.comment.id }" data-switch="${postComment.commentLikeDislike.commentLike}">
+									<c:choose>
+										<c:when test="${postComment.commentLikeDislike.commentLike}">
+										<h3><i class="bi bi-hand-thumbs-up-fill text-danger"></i></h3>
+										</c:when>
+										
+										<c:otherwise>
+										<h3><i class="bi bi-hand-thumbs-up text-dark"></i></h3>
+										</c:otherwise>
+									</c:choose>
+									</a>
+								</div>
+								
+								<%-- like 숫자 --%>
+								<div>
+									<h3>${postComment.commentLikeDislike.likeCount }</h3>
+								</div>
+							</div>
+							
+							<%-- dislike부분 --%>
+							<div class="d-flex align-items-center">
+								<%-- dislike아이콘 --%>
+								<div>
+									<a class="dislikeCommentBtn" data-post-id="${postDetail.post.id }" data-comment-id="${postComment.comment.id }"data-switch="${postComment.commentLikeDislike.commentDislike}">
+									<c:choose>
+										<c:when test="${postComment.commentLikeDislike.commentDislike}">
+										<h3><i class="bi bi-hand-thumbs-down-fill text-danger"></i></h3>
+										</c:when>
+										
+										<c:otherwise>
+										<h3><i class="bi bi-hand-thumbs-down text-dark"></i></h3>
+										</c:otherwise>
+									</c:choose>
+									</a>
+								</div>
+								
+								<%-- dislike 숫자 --%>
+								<div>
+									<h3>${postComment.commentLikeDislike.dislikeCount }</h3>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -212,7 +261,43 @@
 				});
 			});
 			
+			//좋아요 버튼 클릭시
+			$(".likeCommentBtn").on("click", function() {
+				var postId = $(this).data("post-id");
+				var commentId = $(this).data("comment-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/content/comment/like",
+					data:{"postId":postId, "commentId":commentId},
+					success:function(data) {
+						location.reload();
+					},
+					error:function() {
+						alert("error");
+					}
+				});
+				
+			});
 			
+			//싫어요 버튼 클릭시
+			$(".dislikeCommentBtn").on("click", function() {
+				var postId = $(this).data("post-id");
+				var commentId = $(this).data("comment-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/content/comment/dislike",
+					data:{"postId":postId, "commentId":commentId},
+					success:function(data) {
+						location.reload();
+					},
+					error:function() {
+						alert("error");
+					}
+				});
+				
+			});
 			
 			
 		});

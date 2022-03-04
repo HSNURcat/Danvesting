@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
- <mapper namespace="com.dandan.danvesting.post.like.dao.LikeDAO">
- 	<insert id="insertPostLike" parameterType="map">
- 		INSERT INTO `like`
+
+<mapper namespace="com.dandan.danvesting.post.comment.like.dao.CommentLikeDAO">
+
+	<insert id="insertCommentLike" parameterType="map">
+		INSERT INTO `like`
  		(
  			`postOrComment` 
  			, `likeOrDislike`
@@ -17,16 +18,16 @@
  		) VALUES (
  			1
  			, 1
- 			, #{userTablePK}
+ 			, #{userId}
  			, #{nickName}
  			, #{postId}
- 			, NULL
+ 			, #{commentId}
  			, now()
  			, now()
  		);
- 	</insert>
- 	
- 	<select id="selectPostLikeCount" parameterType="int" resultType="int">
+	</insert>
+
+	<select id="selectCommentLikeCount" parameterType="int" resultType="int">
  		SELECT
  			count(*)
  		FROM
@@ -34,37 +35,41 @@
  		WHERE
  			`postId` = #{postId}
  		AND 
- 			`commentId` IS NULL
+ 			`commentId` = #{commentId}
  		AND 
  			`likeOrDislike` = 1;
  	</select>
- 	
- 	<select id="selectPostLikeCountByUserId" parameterType="map" resultType="int">
- 		SELECT
- 			count(*)
- 		FROM
- 			`like`
- 		WHERE
- 			`postId` = #{postId}
- 		AND 
- 			`likeOrDislike` = 1
- 		AND
- 			`userId` = #{userId};
- 	</select>
- 	
- 	<delete id="deletePostLikeByUserId" parameterType="map">
+	
+	<delete id="deleteCommentLikeByUserId" parameterType="map">
  		DELETE FROM 
  			`like`
  		WHERE
  			`postId` = #{postId}
+ 		AND 
+ 			`commentId` = #{commentId}
  		AND 
  			`likeOrDislike` = 1
  		AND
  			`userId` = #{userId};
  	</delete>
  	
- 	 <insert id="insertPostDislike" parameterType="map">
- 		INSERT INTO `like`
+ 	<select id="selectIsCommentLikeByUserId" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`commentId` = #{commentId}
+ 		AND 
+ 			`likeOrDislike` = 1
+ 		AND
+ 			`userId` = #{userId};
+ 	</select>
+
+	<insert id="insertCommentDislike" parameterType="map">
+		INSERT INTO `like`
  		(
  			`postOrComment` 
  			, `likeOrDislike`
@@ -77,16 +82,16 @@
  		) VALUES (
  			1
  			, 0
- 			, #{userTablePK}
+ 			, #{userId}
  			, #{nickName}
  			, #{postId}
- 			, NULL
+ 			, #{commentId}
  			, now()
  			, now()
  		);
- 	</insert>
- 	
- 	<select id="selectPostDislikeCount" parameterType="int" resultType="int">
+	</insert>
+
+	<select id="selectCommentDislikeCount" parameterType="int" resultType="int">
  		SELECT
  			count(*)
  		FROM
@@ -94,32 +99,37 @@
  		WHERE
  			`postId` = #{postId}
  		AND 
- 			`commentId` IS NULL
+ 			`commentId` = #{commentId}
  		AND 
  			`likeOrDislike` = 0;
  	</select>
- 	
- 	<select id="selectPostDislikeCountByUserId" parameterType="map" resultType="int">
- 		SELECT
- 			count(*)
- 		FROM
- 			`like`
- 		WHERE
- 			`postId` = #{postId}
- 		AND 
- 			`likeOrDislike` = 0
- 		AND
- 			`userId` = #{userId};
- 	</select>
- 	
- 	<delete id="deletePostDislikeByUserId" parameterType="map">
+	
+	<delete id="deleteCommentDislikeByUserId" parameterType="map">
  		DELETE FROM 
  			`like`
  		WHERE
  			`postId` = #{postId}
  		AND 
+ 			`commentId` = #{commentId}
+ 		AND 
  			`likeOrDislike` = 0
  		AND
  			`userId` = #{userId};
  	</delete>
- </mapper>
+ 	
+ 	<select id="selectIsCommentDislikeByUserId" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 		AND 
+ 			`commentId` = #{commentId}
+ 		AND 
+ 			`likeOrDislike` = 0
+ 		AND
+ 			`userId` = #{userId};
+ 	</select>
+
+</mapper>
