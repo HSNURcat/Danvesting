@@ -130,7 +130,7 @@
 					contentType:false, //파일 업로드 필수
 					success:function(data) {
 						if(data.result == "success") {
-							location.href="/post/content/list";
+							location.href="/post/content/board";
 						} else {
 							alert("글쓰기 실패");
 						}
