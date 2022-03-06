@@ -59,4 +59,34 @@ public class PostBO {
 		
 		return postDetail;
 	}
+	
+	public boolean deletePost(int postId, int userId) {
+		
+		//post데이터 가져옴
+		Post post = postDAO.getPostDetail(postId);
+		
+		//post의 writerId(userId)와 세션의 userId가 같지 않을때
+		if(post.getWriterId() != userId) {
+			return false;
+		} else {
+			
+			//게시물 첨부 파일 삭제
+			FileManageService.removeFile(post.getImagePath());
+			
+			//게시물 댓글들 & 댓글의 좋아요/싫어요 삭제
+			commentLikeBO.deleteCommentsLike(postId);
+			
+			//게시물 삭제
+			int postCount = postDAO.deletePost(postId, userId); 
+			
+			if(postCount == 0) {
+				//게시물 삭제 없을시 false(삭제 실패)반환
+				return false;
+			} else {
+				//게시물 삭제 있을때 true(삭제성공)반환
+				return true;
+			}
+			
+		}
+	}
 }

@@ -53,4 +53,14 @@
  		WHERE
  			`id` = #{postId};
 	</select>
+	
+	<delete id="deletePost" parameterType="map">
+		DELETE FROM
+			`post`
+		WHERE
+			`writerId` = #{userId}
+		AND
+			`id` = #{postId};
+	
+	</delete>
 </mapper>

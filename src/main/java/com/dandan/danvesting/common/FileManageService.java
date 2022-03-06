@@ -59,4 +59,47 @@ public class FileManageService {
 			//<img src="/images/12_12345352/test.png>
 			return "/images/" + directoryName + file.getOriginalFilename(); 
 		}
+		
+		//파일 삭제
+		public static void removeFile(String filePath) {
+			
+			if((filePath == null) || (filePath == "null")) {
+				logger.error("FileManagerService :: saveFile -- 삭제할 파일 없음");
+				return;
+			}
+			
+			//삭제할 파일 경로
+			//filePath : /images/3_1564796146351/test.png
+			//실재 파일 경로 : "D:\\강의\\메가6개월\\springProject(danstagram)\\upload\\images\\3_1564796146351/test.png"
+			String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
+			
+			//파일 지우기
+			Path path = Paths.get(realFilePath);
+			
+			//파일이 있는지 확인
+			if (Files.exists(path)) {
+				//파일이 존재하면 삭제
+				try {
+					Files.delete(path);
+				} catch (IOException e) {
+					logger.error("FileManagerService :: saveFile -- 파일 삭제 실패");
+					e.printStackTrace();
+				}
+			}
+			
+			//디렉토리 삭제(폴더)
+			//실제 디렉토리 경로 : "D:\\강의\\메가6개월\\springProject(danstagram)\\upload\\images\\3_1564796146351
+			// 실제 디렉토리 경로를 돌려주는 메소드 path.getParent();
+			
+			path = path.getParent();
+			
+			if (Files.exists(path)) {
+				try {
+					Files.delete(path);
+				} catch (IOException e) {
+					logger.error("FileManagerService :: saveFile -- 디렉토리 삭제 실패");
+					e.printStackTrace();
+				}
+			}
+		}
 }

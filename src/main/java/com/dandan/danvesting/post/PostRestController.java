@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,4 +47,24 @@ public class PostRestController {
 		return result;
 	}
 	
+	@GetMapping("/content/delete")
+	public Map<String, String> deletePost(
+			@RequestParam("postId") int postId,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
+		
+		boolean deletePost = postBO.deletePost(postId, userId);
+		
+		Map<String, String>result = new HashMap<>();
+		
+		if(deletePost) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "false");
+		}
+		
+		return result;
+	}
 }

@@ -37,6 +37,13 @@
 		WHERE
 			`postId` = #{postId};
 	</select>
+	
+	<delete id="deleteComments">
+		DELETE FROM
+			`comment`
+		WHERE
+			`postId` = #{postId};
+	</delete>
 </mapper>
 
 

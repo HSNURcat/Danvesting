@@ -131,5 +131,12 @@
  		AND
  			`userId` = #{userId};
  	</select>
+ 	
+ 	<delete id="deleteCommentsLike" parameterType="map">
+ 		DELETE FROM 
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId};
+ 	</delete>
 
 </mapper>

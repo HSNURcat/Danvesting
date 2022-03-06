@@ -51,4 +51,14 @@ public class CommentBO {
 		return commentDetailList;
 	}
 	
+	public int deleteComments(int postId) {
+		//게시물 삭제시 댓글들 삭제
+		int count = commentDAO.deleteComments(postId);
+		
+		//게시물 삭제시 댓글의 좋아요/싫어요 삭제
+		commentLikeBO.deleteCommentsLike(postId);
+		
+		return count;
+	}
+	
 }

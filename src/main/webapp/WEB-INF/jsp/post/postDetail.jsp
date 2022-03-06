@@ -106,8 +106,8 @@
 				<div class="my-5 d-flex justify-content-between">
 					<div></div>
 					<div>
-						<button class="btn btn-info" id="changeBtn">Rewrite Content</button>
-						<button class="btn btn-danger" id="deleteBtn">Delete Content</button>
+						<button class="btn btn-info" data-post-id="${postDetail.post.id }" id="changePostBtn">Rewrite Content</button>
+						<button class="btn btn-danger" data-post-id="${postDetail.post.id }" id="deletePostBtn">Delete Content</button>
 					</div>
 				</div>
 				
@@ -297,6 +297,27 @@
 					}
 				});
 				
+			});
+			
+			$("#deletePostBtn").on("click", function() {
+				var postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/content/delete",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.result == "success") {
+							location.replace("/post/content/board");
+						}
+						else {
+							alert("삭제 실패");
+						}
+					},
+					error:function() {
+						alert("error");
+					}
+				})
 			});
 			
 			

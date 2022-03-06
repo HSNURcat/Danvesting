@@ -111,6 +111,11 @@
 				let postText = $("#postText").val();
 				let file = $("#input-file").val().trim();
 				
+				if(postTitle == "") {
+					alert("제목을 입력해주세요");
+					return;
+				}
+				
 				if(postText == "") {
 					alert("게시물을 입력해주세요");
 					return;

@@ -52,4 +52,8 @@ public interface CommentLikeDAO {
 			@Param("userId") int userId,
 			@Param("postId") int postId,
 			@Param("commentId") int commentId);
+	
+	//해당 게시물의 댓글 좋아요/싫어요 삭제
+	public int deleteCommentsLike(@Param("postId") int postId);
+	
 }

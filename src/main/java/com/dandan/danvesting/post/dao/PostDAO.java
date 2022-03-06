@@ -18,4 +18,6 @@ public interface PostDAO {
 	public List<Post> getPost();
 	
 	public Post getPostDetail(@Param("postId") int postId);
+	
+	public int deletePost(@Param("postId") int postId, @Param("userId") int userId);
 }

@@ -116,5 +116,10 @@ public class CommentLikeBO {
 		return commentLike;
 	}
 	
+	//게시물 삭제시, 해당 게시물 댓글 좋아요 삭제
+	public int deleteCommentsLike(int postId) {
+		int count = commentLikeDAO.deleteCommentsLike(postId);
+		return count;
+	}
 	
 }
