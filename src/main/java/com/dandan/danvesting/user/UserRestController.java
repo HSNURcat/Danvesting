@@ -94,4 +94,49 @@ public class UserRestController {
 	}
 	
 	
+	//회원정보 수정전 회원확인
+	@PostMapping("/member/check_member")
+	public Map<String, String> checkMember(
+			@RequestParam("password") String password,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
+		
+		int count = userBO.checkMember(userId, password);
+		
+		Map<String, String>result = new HashMap<>();
+		
+		if (count == 0) {
+			result.put("result", "failure");
+		} else {
+			result.put("result", "success");
+		}
+		return result;
+	}
+	
+	//회원정보 수정
+	@PostMapping("/member/rewrite_user_info")
+	public Map<String, String> rewriteMember(
+			@RequestParam("password") String password,
+			@RequestParam("name") String name,
+			@RequestParam("nickName") String nickName,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		int userId = (Integer)session.getAttribute("id");
+		
+		int count = userBO.updateUserInfo(userId, password, name, nickName);
+		
+		Map<String, String> result = new HashMap<>();
+		if (count==0) {
+			result.put("result", "failure");
+		} else {
+			result.put("result", "success");
+		}
+		return result;
+	}
+	
+	
 }

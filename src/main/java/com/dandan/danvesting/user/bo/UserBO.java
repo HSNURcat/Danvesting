@@ -27,5 +27,22 @@ public class UserBO {
 	public int checkDuplication(String longinId) {
 		return userDAO.selectUserByLoginId(longinId);
 	}
+	
+	public int checkMember(int userId, String password) {
+		String encryptedPW = EncryptUtils.md5(password);
+		
+		return userDAO.selectCheckUser(userId, encryptedPW);
+	}
+	
+	
+	public String getLoginId(int userId) {
+		return userDAO.selectUserLoginId(userId);
+	}
+	
+	public int updateUserInfo(int userId, String password, String name, String nickName) {
+		String encryptedPW = EncryptUtils.md5(password);
+		
+		return userDAO.updateUserInfo(userId, encryptedPW, name, nickName);
+	}
 
 }

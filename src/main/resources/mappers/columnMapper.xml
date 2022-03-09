@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.dandan.danvesting.column.dao.ColumnDAO">
+ 	<insert id="insertColumn" parameterType="map">
+ 		INSERT INTO `column`
+ 		(
+ 			`writer`
+ 			,`url`
+			, `title`
+			, `content`
+			, createdAt
+			, updatedAt
+ 		) VALUES (
+ 			'auto_crawler'
+ 			, #{url}
+ 			, #{title}
+ 			, #{content}
+ 			, now()
+ 			, now()
+ 		);
+ 	
+ 	</insert>
+ 	
+ 	<select id="selectColumns" resultType="com.dandan.danvesting.column.model.Column">
+ 		SELECT
+			`id`
+			, `writer`
+			, `url`
+ 			, `title`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`column`;
+ 	</select>
+ 	
+ 	<select id="selectColumnByColumnId" parameterType="int" resultType="com.dandan.danvesting.column.model.Column">
+ 		SELECT
+			`id`
+			, `writer`
+			, `url`
+ 			, `title`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`column`
+ 		WHERE
+ 			`id` = #{columnId};
+ 	</select>
+ 
+ </mapper>
+
+
+
+

@@ -22,13 +22,22 @@
 						<c:choose>
 						
 						<c:when test="${not empty id }">
-							<div class="mr-3 col-6">
-								 <span class="whiteTitleText font-weight-bold">${nickName }님</span>
+							<div class="d-flex flex-column col-6">
+								<div class="mr-3 ">
+									<a data-toggle="collapse" href="#memberMenu">
+										<span class="whiteTitleText font-weight-bold">${nickName }님</span>
+									</a>
+								</div>
+								<div class="collapse" id="memberMenu">
+									<div>
+										<a href="/user/member/check_member">Change User Info</a>
+									</div>
+								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="mr-3 col-6">
-								<a href="/user/sign_in">
+								<a href="/user/sign_in_view">
 									<span class="whiteTitleText font-weight-bold">로그인</span>
 								</a>
 							</div>
@@ -50,7 +59,7 @@
 				<nav id="menu" class="w-25 h-25">
 					<ul class="nav nav-fill d-flex align-items-center justify-content-around">
 						<li><a href="#" class="nav-text text-dark font-weight-bold">지수</a></li>
-						<li><a href="#" class="nav-text text-dark font-weight-bold">자유게시판</a></li>
+						<li><a href="/post/content/board" class="nav-text text-dark font-weight-bold">자유게시판</a></li>
 						<li><a href="#" class="nav-text text-dark font-weight-bold">내 관심 종목</a></li>
 					</ul>
 				</nav>
