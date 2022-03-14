@@ -16,7 +16,7 @@ public class ColumnController {
 	@Autowired
 	private ColumnBO columnBO;
 	
-//	//테스트 코드
+//	//크롤링 작동 테스트 코드
 //	@GetMapping("/crawlingTest")
 //	public String crawlingTest() {
 //		

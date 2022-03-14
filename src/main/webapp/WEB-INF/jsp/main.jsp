@@ -32,14 +32,34 @@
 				</div>
 				
 				<%-- 칼럼 & 그래프 --%>
-				<div>
+				<div class="mb-5">
 					<%-- 칼럼 --%>
 					<div>
 						<div>
 							<h3 class="text-dark decoration-none">분석 & 견해</h3>
 						</div>
+						<div class="boardBar d-flex align-items-center">
+							<span class="whiteTitleText font-weight-bold ml-3">Columns</span>
+						</div>
+						
+						<%-- 칼럼 본문들 --%>
 						<div>
-							<%-- 칼럼 본문들 --%>
+							<%-- 반복 시작 --%>
+							<c:forEach var="column" items="${mainPageData.column}">
+							<a href="http://localhost:8080/post/column_detail_view?columnId=${column.id }" class="text-decoration-none text-dark">
+							<div class="d-flex my-2">
+								<div class="col-2 text-center">
+									${column.writer }
+								</div>
+								<div class="col-8 text-center">
+									${column.title}
+								</div>
+								<div class="col-2 text-center">
+									<fmt:formatDate value="${column.updatedAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
+								</div>
+							</div>
+							</a>
+							</c:forEach>
 						</div>		
 						<div>
 							<a href="#">
@@ -56,13 +76,14 @@
 				
 				<div>
 					<div class="boardBar d-flex align-items-center">
-						<span class="whiteTitleText font-weight-bold ml-3">board</span>
+						<span class="whiteTitleText font-weight-bold ml-3">Board</span>
 					</div>
 					
 					<%-- 자유게시판 게시물 부분 --%>
 					<div>
 						<%-- 반복 시작 --%>
-						<c:forEach var="post" items="${postList}">
+						<c:forEach var="post" items="${mainPageData.post}">
+						<a href="/post/content/list_detail_view?postId=${post.id }" class="text-decoration-none text-dark">
 						<div class="d-flex my-2">
 							<div class="col-2 text-center">
 								${post.nickName }
@@ -74,6 +95,7 @@
 								<fmt:formatDate value="${post.updatedAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
 							</div>
 						</div>
+						</a>
 						</c:forEach>
 						<%-- 반복 끝 --%>
 					</div>
@@ -90,7 +112,6 @@
 			<c:import url="/WEB-INF/jsp/include/footer.jsp"></c:import>
 		
 		</div>
-		
 		
 	</body>
 </html>

@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.dandan.danvesting.bo.DanvestingBO;
-import com.dandan.danvesting.post.model.Post;
+import com.dandan.danvesting.model.MainPageData;
 
 @Controller
 public class DanvestingController {
@@ -19,9 +19,9 @@ public class DanvestingController {
 	@GetMapping("/main")
 	public String mainPage(Model model) {
 		
-		List<Post> posts = danvestingBO.getPosts();
+		MainPageData mainPageData = danvestingBO.getMainPageData();
 		
-		model.addAttribute("postList", posts);
+		model.addAttribute("mainPageData", mainPageData);
 		
 		return "main";
 	}

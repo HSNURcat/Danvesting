@@ -5,7 +5,9 @@
 				<div class="page-header d-flex">
 					<%-- 로고 --%>
 					<div class="col-4">
-						<span class="display-4 font-weight-bold">Danvesting</span>
+						<a href="/main" class="text-decoration-none text-white">
+							<span class="display-4 font-weight-bold">Danvesting</span>
+						</a>
 					</div>
 					
 					<%-- 검색창 --%>
@@ -64,3 +66,15 @@
 					</ul>
 				</nav>
 			</div>
+			
+			<script type="text/javascript">
+				$(document).ready(function() {
+					
+					$("#searchBtn").on("click", function() {
+						var searchObj = $("#searchObj").val();
+						var ticker = searchObj.toUpperCase();
+						location.href="/post/stock/detail_view?ticker=" + ticker;
+					});
+				});
+				
+			</script>

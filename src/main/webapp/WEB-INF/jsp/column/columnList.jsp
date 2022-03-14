@@ -19,7 +19,7 @@
 		<link rel="stylesheet"  href="/static/css/style.css" type="text/css">
 		
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Column</title>
 	</head>
 	<body>
 		<div id="wrap">
@@ -47,7 +47,7 @@
 						<div class="my-3">
 						<%-- 반복할 부분 시작 --%>
 						<c:forEach var="column" items="${columns}">
-						<a href="#" class="text-decoration-none text-dark">
+						<a href="http://localhost:8080/post/column_detail_view?columnId=${column.id }" class="text-decoration-none text-dark">
 							<div class="postDetail d-flex">
 								<%--칼럼 작성자 --%>
 								<div class="col-2 d-flex justify-content-center align-items-center">
@@ -73,9 +73,6 @@
 					</section>
 					
 				</div>
-				
-				
-				
 				
 			</section>
 			
