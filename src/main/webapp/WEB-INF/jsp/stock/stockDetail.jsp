@@ -45,11 +45,9 @@
 			//데이트 피커 기본값 설정(1달 전)
 			$( "#datepicker" ).datepicker("setDate", "today-1M");
 			
-			//url에서 티커추출
-			let parameter = location.search;
-			let param = parameter.split("=")
-			var ticker = param[1];
-			
+			//티커추출
+			var ticker = "${companyInfo.ticker}";
+
 			//HTML에서 클래스 이름으로 티커 표기 가능하도록
 			document.getElementById("ticker").innerHTML = ticker;
 			
@@ -200,6 +198,29 @@
 				chart.draw(data, options);					
 			}
 			
+			$("#addCommentBtn").on("click", function() {
+				var ticker = $(this).data("ticker");
+				var cik = $(this).data("cik");
+				var comment = $("#commentText").val();
+				
+				$.ajax({
+					type:"post",
+					url:"/post/stock/comment/create",
+					data:{"ticker":ticker, "cik":cik, "commentContent":comment},
+					success:function(data) {
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("댓글추가 실패");
+						}
+					},
+					error:function() {
+						alert("에러");
+					}
+				});
+			});
+			
+			
 		});
 		</script>
 		
@@ -224,6 +245,68 @@
 					<div id="trading_chart_div" style="width: 100%; height: 400px;"></div>
 				</div>
 				
+				<div class="d-flex">
+					<div class="col-6 mt-5 mr-3">
+						<table class="table">
+							<tr>
+								<td>Name</td>
+								<td>${companyInfo.name }</td>
+							</tr>
+							<tr>
+								<td>Ticker</td>
+								<td>${companyInfo.ticker }</td>
+							</tr>
+							<tr>
+								<td>Logo</td>
+								<td> <img alt="logo" src="${companyInfo.brandLogoUrl}" width="100"> </td>
+							</tr>
+							<tr>
+								<td>Icon</td>
+								<td> <img alt="logo" src="${companyInfo.brandIconUrl}" width="100"> </td>
+							</tr>
+							<tr>
+								<td>address</td>
+								<td>
+									${companyInfo.address1 } ${companyInfo.city } ${companyInfo.state }<br>
+									${companyInfo.postalCode } 
+								</td>
+							</tr>
+							<tr>
+								<td>Phone-number</td>
+								<td>${companyInfo.phoneNumber }	</td>
+							</tr>
+							<tr>
+								<td>Company homepage</td>
+								<td>${companyInfo.homepageUrl }	</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-6 mt-5 ml-3">
+						<table>
+							<tr>
+								<td>Company description</td>
+								<td>${companyInfo.description }</td>
+							</tr>
+						</table>
+					</div>
+					
+				</div>
+				
+				<%-- 댓글구역 --%>
+				<div class="commentLine d-flex align-items-center">
+					<span class="whiteTitleText font-weight-bold ml-3">Comment</span>
+				</div>
+				
+				<%-- 댓글 입력구역 --%>
+				<div class="mb-3 d-flex bg-light">
+					<%-- 댓글 텍스트 박스 --%>
+					<div class="col-11 d-flex justify-content-center align-items-center mt-3 mb-4">
+						<textarea class=" form-control" placeholder="Input text...." id="commentText"></textarea>
+					</div>
+					<div class="col-1 d-flex justify-content-center align-items-center mb-3">
+						<button type="button" class="btn btn-info" id="addCommentBtn" data-ticker="${companyInfo.ticker }" data-cik="${companyInfo.cik }">Submit</button>
+					</div>
+				</div>
 				
 			</section>
 			

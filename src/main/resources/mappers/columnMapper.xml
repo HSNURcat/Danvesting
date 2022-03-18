@@ -33,7 +33,9 @@
  			, `createdAt`
  			, `updatedAt`
  		FROM
- 			`column`;
+ 			`column`
+ 		ORDER BY `id`
+ 			DESC;
  	</select>
  	
  	<select id="selectColumnByColumnId" parameterType="int" resultType="com.dandan.danvesting.column.model.Column">

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.dandan.danvesting.stock.model.CompanyInfo;
 import com.dandan.danvesting.stock.model.StockBar;
 import com.dandan.danvesting.stock.model.StockBarResult;
 import com.google.gson.Gson;
@@ -85,7 +86,113 @@ public class StockBO {
 	}
 	
 	
-	
+	public CompanyInfo getCompanyInfoJSON (String ticker) {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		LocalDate now = LocalDate.now();
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("name", ticker);
+		params.put("apiKey", "zd3fmYrcDdg3TJsrWXPf2oEkch0tefRH");
+		params.put("date", now.toString());
+		
+		String stringline = 
+			restTemplate.getForObject(
+					"https://api.polygon.io/v3/reference/tickers/" + params.get("name") +"?date=" + params.get("date") + "&apiKey=" + params.get("apiKey")
+					, String.class);
+		
+		//DTO인스턴스화
+		CompanyInfo companyInfo = new CompanyInfo();
+		
+		//json전체
+		JsonParser parser = new JsonParser(); 
+		JsonObject obj = (JsonObject) parser.parse(stringline);
+				
+		//result부분
+		JsonObject results = (JsonObject) obj.get("results");
+		
+		//종목이름
+		companyInfo.setTicker(ticker);
+		
+		//종목이름
+		JsonPrimitive name = (JsonPrimitive) results.get("name");
+		companyInfo.setName(name.toString().replace("\"", ""));
+		
+		//증권거래소 상 종목 id
+		JsonPrimitive cik = (JsonPrimitive) results.get("cik");
+		companyInfo.setCik(cik.toString().replace("\"", ""));
+		
+		//거래가능 여부
+		JsonPrimitive active = (JsonPrimitive) results.get("active");
+		companyInfo.setActive(active.getAsBoolean());
+		
+		//상장날짜
+		JsonPrimitive listDate = (JsonPrimitive) results.get("list_date");
+		companyInfo.setListDate(listDate.toString());
+
+		//종목설명
+		JsonPrimitive description = (JsonPrimitive) results.get("description");
+		companyInfo.setDescription(description.toString().replace("\"", ""));
+		
+		//전화번호
+		JsonPrimitive phoneNumber = (JsonPrimitive) results.get("phone_number");
+		if (phoneNumber != null) {
+			companyInfo.setPhoneNumber(phoneNumber.toString().replace("\"", ""));
+		}
+		
+		//종목 본사 주소정보들
+		JsonObject address = (JsonObject) results.get("address");
+		
+		if (address != null) {
+			//종목 본사 주소(state)
+			JsonPrimitive state = (JsonPrimitive) address.get("state");
+			companyInfo.setState(state.toString().replace("\"", ""));
+			
+			//종목 본사 주소(city)
+			JsonPrimitive city = (JsonPrimitive) address.get("city");
+			companyInfo.setCity(city.toString().replace("\"", ""));
+			
+			//종목 본사 주소(세부주소)
+			JsonPrimitive address1 = (JsonPrimitive) address.get("address1");
+			companyInfo.setAddress1(address1.toString().replace("\"", ""));
+			
+			//종목 본사 주소(우편번호)
+			JsonPrimitive postalCode = (JsonPrimitive) address.get("postal_code");
+			companyInfo.setPostalCode(postalCode.toString().replace("\"", ""));
+		}
+		
+		//종목 브랜드 정보들
+		JsonObject branding = (JsonObject) results.get("branding");
+		
+		//브랜드로고 url
+		JsonPrimitive logoUrl = (JsonPrimitive) branding.get("logo_url");
+		if (logoUrl != null) {
+			companyInfo.setLogoUrl(logoUrl.toString());
+			
+			//브랜드로고 url with APIKey
+			String brandLogoUrl = logoUrl.toString().replace("\"", "");//쌍따옴표 제거
+			companyInfo.setBrandLogoUrl(brandLogoUrl + "?apiKey=" + params.get("apiKey"));
+			
+		}
+		
+		//브랜드아이콘 url
+		JsonPrimitive iconUrl = (JsonPrimitive) branding.get("icon_url");
+		if (iconUrl != null) {
+			companyInfo.setIconUrl(iconUrl.toString());
+			
+			//브랜드로고 url with APIKey
+			String brandIconUrl = iconUrl.toString().replace("\"", "");//쌍따옴표 제거
+			companyInfo.setBrandIconUrl(brandIconUrl + "?apiKey=" + params.get("apiKey"));
+		}
+		
+		//종목 홈페이지
+		JsonPrimitive homepage = (JsonPrimitive) results.get("homepage_url");
+		String homepageUrl = homepage.toString().replace("\"", "");//쌍따옴표 제거
+		companyInfo.setHomepageUrl(homepageUrl);
+		
+		return companyInfo;
+	}
 	
 	
 }
