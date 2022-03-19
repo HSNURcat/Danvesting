@@ -220,7 +220,43 @@
 				});
 			});
 			
+			//좋아요 버튼 클릭시
+			$(".likeCommentBtn").on("click", function() {
+				var ticker = $(this).data("ticker");
+				var commentId = $(this).data("comment-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/stock/comment/like",
+					data:{"ticker":ticker, "commentId":commentId},
+					success:function(data) {
+						location.reload();
+					},
+					error:function() {
+						alert("error");
+					}
+				});
+				
+			});
 			
+			//싫어요 버튼 클릭시
+			$(".dislikeCommentBtn").on("click", function() {
+				var ticker = $(this).data("ticker");
+				var commentId = $(this).data("comment-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/stock/comment/dislike",
+					data:{"ticker":ticker, "commentId":commentId},
+					success:function(data) {
+						location.reload();
+					},
+					error:function() {
+						alert("error");
+					}
+				});
+				
+			});
 		});
 		</script>
 		
@@ -307,6 +343,73 @@
 						<button type="button" class="btn btn-info" id="addCommentBtn" data-ticker="${companyInfo.ticker }" data-cik="${companyInfo.cik }">Submit</button>
 					</div>
 				</div>
+				
+				<%-- 댓글 출력 구역 --%>
+				<c:forEach var="stockCommentDetail" items="${companyInfo.stockCommentDetails}" >
+				<div class="commentArea ">
+					<%-- 반복 구역 시작 --%>
+					<div class="comment d-flex align-items-center my-3">
+						<%-- 댓글 작성자 --%>
+						<div class="col-2">
+							<h3>${stockCommentDetail.stockComment.nickName }</h3>
+						</div>
+						
+						<%-- 댓글 내용 --%>
+						<div class="col-8">
+							${stockCommentDetail.stockComment.content }
+						</div>
+						
+						<%-- 댓글 좋아요/싫어요 부분 --%>
+						<div class="col-2 d-flex">
+							<%-- like부분 --%>
+							<div class="d-flex mr-5 align-items-center">
+								<%-- like아이콘 --%>
+								<div>
+									<a class="likeCommentBtn" data-ticker="${companyInfo.ticker }" data-comment-id="${stockCommentDetail.stockComment.id }">
+									<c:choose>
+										<c:when test="${stockCommentDetail.stockCommentLike.commentLike}">
+										<h3><i class="bi bi-hand-thumbs-up-fill text-danger"></i></h3>
+										</c:when>
+										
+										<c:otherwise>
+										<h3><i class="bi bi-hand-thumbs-up text-dark"></i></h3>
+										</c:otherwise>
+									</c:choose>
+									</a>
+								</div>
+								
+								<%-- like 숫자 --%>
+								<div>
+									<h3>${stockCommentDetail.stockCommentLike.likeCount}</h3>
+								</div>
+							</div>
+							
+							<%-- dislike부분 --%>
+							<div class="d-flex align-items-center">
+								<%-- dislike아이콘 --%>
+								<div>
+									<a class="dislikeCommentBtn" data-ticker="${companyInfo.ticker }" data-comment-id="${stockCommentDetail.stockComment.id }">
+									<c:choose>
+										<c:when test="${stockCommentDetail.stockCommentLike.commentDislike}">
+										<h3><i class="bi bi-hand-thumbs-down-fill text-primary"></i></h3>
+										</c:when>
+										
+										<c:otherwise>
+										<h3><i class="bi bi-hand-thumbs-down text-dark"></i></h3>
+										</c:otherwise>
+									</c:choose>
+									</a>
+								</div>
+								
+								<%-- dislike 숫자 --%>
+								<div>
+									<h3>${stockCommentDetail.stockCommentLike.dislikeCount}</h3>
+								</div>
+							</div>
+					</div>
+				</div>
+				</c:forEach>
+				
 				
 			</section>
 			

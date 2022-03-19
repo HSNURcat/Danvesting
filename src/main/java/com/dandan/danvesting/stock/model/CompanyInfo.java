@@ -1,5 +1,10 @@
 package com.dandan.danvesting.stock.model;
 
+import java.util.List;
+
+import com.dandan.danvesting.stock.comment.model.StockComment;
+import com.dandan.danvesting.stock.comment.model.StockCommentDetail;
+
 public class CompanyInfo {
 	private String ticker; //종목티커
 	private String name; //종목이름
@@ -17,6 +22,8 @@ public class CompanyInfo {
 	private String postalCode; //종목 본사 주소(우편번호)
 	private String phoneNumber; //전화번호
 	private String description; //종목설명
+	
+	private List<StockCommentDetail> stockCommentDetails;// 종목 댓글들 + 좋아요/싫어요
 	
 	
 	public String getTicker() {
@@ -114,6 +121,14 @@ public class CompanyInfo {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	public List<StockCommentDetail> getStockCommentDetails() {
+		return stockCommentDetails;
+	}
+	public void setStockCommentDetails(List<StockCommentDetail> stockCommentDetails) {
+		this.stockCommentDetails = stockCommentDetails;
 	}
 	
 }

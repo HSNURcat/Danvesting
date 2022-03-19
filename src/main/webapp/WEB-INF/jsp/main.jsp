@@ -45,7 +45,7 @@
 						<%-- 칼럼 본문들 --%>
 						<div>
 							<%-- 반복 시작 --%>
-							<c:forEach var="column" items="${mainPageData.column}">
+							<c:forEach var="column" items="${mainPageData.column}" end="6">
 							<a href="http://localhost:8080/post/column_detail_view?columnId=${column.id }" class="text-decoration-none text-dark">
 							<div class="d-flex my-2">
 								<div class="col-2 text-center">
@@ -62,7 +62,7 @@
 							</c:forEach>
 						</div>		
 						<div>
-							<a href="#">
+							<a href="/post/column_list">
 								View more
 							</a>
 						</div>
@@ -82,7 +82,7 @@
 					<%-- 자유게시판 게시물 부분 --%>
 					<div>
 						<%-- 반복 시작 --%>
-						<c:forEach var="post" items="${mainPageData.post}">
+						<c:forEach var="post" items="${mainPageData.post}" end="6">
 						<a href="/post/content/list_detail_view?postId=${post.id }" class="text-decoration-none text-dark">
 						<div class="d-flex my-2">
 							<div class="col-2 text-center">

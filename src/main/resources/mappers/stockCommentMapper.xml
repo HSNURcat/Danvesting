@@ -23,4 +23,20 @@
 			, now()
 		);
  	</insert>
+ 	
+ 	<select id="selectStockComments"  parameterType="map" resultType="com.dandan.danvesting.stock.comment.model.StockComment">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+			, `nickName`
+			, `ticker`
+			, `cik`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`stockcomment`
+		WHERE
+			`ticker` = #{ticker};
+ 	</select>
  </mapper>

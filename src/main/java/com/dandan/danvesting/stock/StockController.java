@@ -3,6 +3,9 @@ package com.dandan.danvesting.stock;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +24,15 @@ public class StockController {
 	private StockBO stockBO;
 	
 	@GetMapping("/stock/detail_view")
-	public String getStockDetail(@RequestParam("ticker")String ticker, Model model) {
+	public String getStockDetail(@RequestParam("ticker")String ticker, 
+			Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
 		
 		CompanyInfo companyInfo = new CompanyInfo();
 		
-		companyInfo = stockBO.getCompanyInfoJSON(ticker);
+		companyInfo = stockBO.getCompanyInfoJSON(userId, ticker);
 		
 		model.addAttribute("companyInfo", companyInfo);
 		return "stock/stockDetail";
