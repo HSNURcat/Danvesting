@@ -47,6 +47,98 @@ public class PostRestController {
 		return result;
 	}
 	
+	@PostMapping("/content/check_authority")
+	public Map<String, Boolean> checkAuthority(
+			@RequestParam("postId") int postId,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		//현재 로그인된 사용자의 회원정보
+		int userId = (Integer)session.getAttribute("id");
+		
+		Map<String, Boolean> result = new HashMap<>();
+		
+		//수정권한 있음(true 반환), 수정권한 없음(false 반환)
+		boolean rewriteAuthority = postBO.getPostAuthor(userId, postId);
+		
+		if (rewriteAuthority) {
+			result.put("authority", rewriteAuthority);
+		} else {
+			result.put("authority", rewriteAuthority);
+		}
+		
+		return result;
+	}
+	
+	//파일수정 없이 텍스트 수정만 있을경우
+	@PostMapping("/content/rewrite")
+	public Map<String, String> rewritePost(
+			@RequestParam("postId") int postId,
+			@RequestParam("postTitle") String postTitle,
+			@RequestParam("postText") String postText,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		//현재 로그인된 사용자의 회원정보
+		int userId = (Integer)session.getAttribute("id");
+		
+		//수정권한 있음(true 반환), 수정권한 없음(false 반환)
+		boolean rewriteAuthority = postBO.getPostAuthor(userId, postId);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if (rewriteAuthority) {//수정권한 있으면, 수정진행
+			int count = postBO.rewritePost(userId, postId, postTitle, postText);
+			
+			if (count == 1) {
+				result.put("result", "success");
+			} else {
+				result.put("result", "failure");
+			}
+			
+		} else {//수정권한 없으면, 권한 없음 결과값 넣음
+			result.put("result", "NoAuthority");
+		}
+		
+		return result;
+	}
+	
+	//파일수정이 있는경우
+	@PostMapping("/content/rewrite_withfile")
+	public Map<String, String> rewritePostWithFile(
+			@RequestParam("postId") int postId,
+			@RequestParam("postTitle") String postTitle,
+			@RequestParam("postText") String postText,
+			@RequestParam("file") MultipartFile file,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		//현재 로그인된 사용자의 회원정보
+		int userId = (Integer)session.getAttribute("id");
+		
+		//수정권한 있음(true 반환), 수정권한 없음(false 반환)
+		boolean rewriteAuthority = postBO.getPostAuthor(userId, postId);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if (rewriteAuthority) {//수정권한 있으면, 수정진행
+			int count = postBO.rewritePostWithFile(userId, postId, postTitle, postText, file);
+			
+			if (count == 1) {
+				result.put("result", "success");
+			} else {
+				result.put("result", "failure");
+			}
+			
+		} else {//수정권한 없으면, 권한 없음 결과값 넣음
+			result.put("result", "NoAuthority");
+		}
+		return result;
+	}
+	
 	@GetMapping("/content/delete")
 	public Map<String, String> deletePost(
 			@RequestParam("postId") int postId,

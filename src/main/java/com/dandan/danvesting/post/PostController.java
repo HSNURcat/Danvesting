@@ -50,4 +50,17 @@ public class PostController {
 		return "post/postDetail";
 	}
 	
+	@GetMapping("/content/rewrite_view")
+	public String showPostDetail(@RequestParam("postId") int postId, Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
+		
+		PostDetail postDetail = postBO.getPostDetail(postId, userId);
+		
+		model.addAttribute("postDetail", postDetail);
+		
+		return "post/rewritePost";
+	}
+	
 }

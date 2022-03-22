@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dandan.danvesting.stock.list.dao.MyStockListDAO">
+	<insert id="insertMyStockList" parameterType="map">
+		INSERT INTO `myStockList`
+ 		(
+			`userId`
+			, `ticker`
+			, `createdAt`
+			, `updatedAt`
+ 		) VALUES (
+ 			#{userId}
+ 			, #{ticker}
+ 			, now()
+ 			, now()
+ 		);
+	</insert>
+	
+	<select id="selectMyStockList" parameterType="int" resultType="com.dandan.danvesting.stock.list.model.StockList">
+		SELECT
+			`userId`
+			, `ticker`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`myStockList`
+		WHERE
+			`userId` = #{userId};
+	</select>
+	
+	
+</mapper>
+
+

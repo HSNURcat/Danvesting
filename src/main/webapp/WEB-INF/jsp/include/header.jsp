@@ -60,9 +60,9 @@
 			<div class="page-menu mb-5">
 				<nav id="menu" class="w-25 h-25">
 					<ul class="nav nav-fill d-flex align-items-center justify-content-around">
-						<li><a href="#" class="nav-text text-dark font-weight-bold">지수</a></li>
-						<li><a href="/post/content/board" class="nav-text text-dark font-weight-bold">자유게시판</a></li>
-						<li><a href="#" class="nav-text text-dark font-weight-bold">내 관심 종목</a></li>
+					<li><a href="/post/column_list" class="nav-text text-dark font-weight-bold">Column</a></li>
+						<li><a href="/post/content/board" class="nav-text text-dark font-weight-bold">Board</a></li>
+						<li><a href="/post/stock/mylist" class="nav-text text-dark font-weight-bold">My stock list</a></li>
 					</ul>
 				</nav>
 			</div>

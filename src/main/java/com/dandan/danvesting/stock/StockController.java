@@ -37,4 +37,5 @@ public class StockController {
 		model.addAttribute("companyInfo", companyInfo);
 		return "stock/stockDetail";
 	}
+	
 }

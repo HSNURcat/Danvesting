@@ -63,4 +63,42 @@
 			`id` = #{postId};
 	
 	</delete>
+	
+	<select id="getPostAuthor" resultType="int">
+		SELECT
+			count(*)
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{postId}
+ 		AND 
+ 			`writerId` = #{userId};
+	</select>
+	
+	<update id="updatePost" parameterType="map">
+ 		UPDATE 
+ 			`post`
+ 		SET
+ 			`title` = #{postTitle}	
+ 			, `content` = #{postText}
+ 			, `updatedAt` = now()
+ 		WHERE
+ 			`id` = #{postId}
+ 		AND 
+ 			`writerId` = #{userId};
+ 	</update>
+ 	
+	<update id="updatePostWithFile" parameterType="map">
+ 		UPDATE 
+ 			`post`
+ 		SET
+ 			`title` = #{postTitle}	
+ 			, `content` = #{postText}
+ 			, `imagePath` = #{filePath}
+ 			, `updatedAt` = now()
+ 		WHERE
+ 			`id` = #{postId}
+ 		AND 
+ 			`writerId` = #{userId};
+ 	</update>
 </mapper>

@@ -240,6 +240,27 @@
 				});
 			});
 			
+			
+			$("#changePostBtn").on("click", function() {
+				
+				var postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"post",
+					url:"/post/content/check_authority",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.authority == true) {
+							location.replace("/post/content/rewrite_view?postId=" + postId);
+						} else {
+							alert("No Authority");
+						}
+					},
+				});
+				
+			});
+			
+			
 			$("#addCommentBtn").on("click", function() {
 				var postId = $(this).data("post-id");
 				var comment = $("#commentText").val();
@@ -299,25 +320,40 @@
 				
 			});
 			
+			//삭제버튼 클릭시
 			$("#deletePostBtn").on("click", function() {
 				var postId = $(this).data("post-id");
 				
-				$.ajax({
-					type:"get",
-					url:"/post/content/delete",
+				$.ajax({//권한 조회
+					type:"post",
+					url:"/post/content/check_authority",
 					data:{"postId":postId},
 					success:function(data) {
-						if(data.result == "success") {
-							location.replace("/post/content/board");
-						}
-						else {
-							alert("삭제 실패");
+						
+						if(data.authority == true) {//권한이 있으면,
+							
+							$.ajax({ //삭제진행
+								type:"get",
+								url:"/post/content/delete",
+								data:{"postId":postId},
+								success:function(data) {
+									if(data.result == "success") {
+										location.replace("/post/content/board");
+									}
+									else {
+										alert("삭제 실패");
+									}
+								},
+								error:function() {
+									alert("error");
+								}
+							});
+							
+						} else { //권한이 없으면
+							alert("No Authority");//alert표기
 						}
 					},
-					error:function() {
-						alert("error");
-					}
-				})
+				});
 			});
 			
 			

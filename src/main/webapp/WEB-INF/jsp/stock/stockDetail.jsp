@@ -198,6 +198,26 @@
 				chart.draw(data, options);					
 			}
 			
+			$("#addStockBtn").on("click", function() {
+				var ticker = $(this).data("ticker");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/stock/addStock",
+					data:{"ticker":ticker},
+					success:function(data) {
+						if(data.result == "success") {
+							alert("Add stock success");
+						} else {
+							alert("Add stock failure");
+						}
+					},
+					error:function() {
+						alert("에러");
+					}
+				});
+			});
+			
 			$("#addCommentBtn").on("click", function() {
 				var ticker = $(this).data("ticker");
 				var cik = $(this).data("cik");
@@ -326,6 +346,9 @@
 						</table>
 					</div>
 					
+				</div>
+				<div class="d-flex justify-content-end my-5">
+					<button type="button" class="btn btn-info" id="addStockBtn" data-ticker="${companyInfo.ticker }">Add This stock in list</button>
 				</div>
 				
 				<%-- 댓글구역 --%>

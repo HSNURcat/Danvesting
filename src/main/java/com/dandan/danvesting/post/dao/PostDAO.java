@@ -20,4 +20,18 @@ public interface PostDAO {
 	public Post getPostDetail(@Param("postId") int postId);
 	
 	public int deletePost(@Param("postId") int postId, @Param("userId") int userId);
+	
+	public int getPostAuthor(@Param("postId") int postId, 
+			@Param("userId") int userId);
+
+	public int updatePost(@Param("postId") int postId, 
+			@Param("userId") int userId,
+			@Param("postTitle") String postTitle,
+			@Param("postText") String postText);
+	
+	public int updatePostWithFile(@Param("postId") int postId, 
+			@Param("userId") int userId,
+			@Param("postTitle") String postTitle,
+			@Param("postText") String postText,
+			@Param("filePath") String filePath);
 }

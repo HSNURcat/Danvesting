@@ -11,14 +11,19 @@ import java.net.URLConnection;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.tomcat.util.json.JSONParser;
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import com.dandan.danvesting.stock.bo.StockBO;
+import com.dandan.danvesting.stock.model.StockBar;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -27,6 +32,20 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
 public class GetAPIDataTest {
+	@Autowired
+	private StockBO stockBO;
+	
+	//종목 가격 가져옴
+	public String getMyStockPrice(String ticker, String fromDate) {
+		StockBar stockData = stockBO.getStockDetailJSON(ticker, fromDate);
+		String closePrice = "";
+		List<Map<String, Object>> results = stockData.getResults();
+		for (int i = 0; i < results.size(); i++) {
+			Map<String, Object>result = results.get(i);
+			closePrice = (String)result.get("c");
+		}
+		return closePrice; 
+	}
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -34,6 +53,7 @@ public class GetAPIDataTest {
 		
 		LocalDate now = LocalDate.now();
 		System.out.println(now.toString());
+		String today = now.toString();
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("name", "QQQ");
@@ -115,6 +135,8 @@ public class GetAPIDataTest {
 		}
 		
 		System.out.println("----------------------------------------------------------------------------------------------------------------------");
+		
+		
 	}
 
 }
