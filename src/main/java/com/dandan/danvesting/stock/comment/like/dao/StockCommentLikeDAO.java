@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StockCommentLikeDAO {
-	//댓글 좋아요 추가
+		//댓글 좋아요 추가
 		public int insertCommentLike(
 				@Param("userId") int userId,
 				@Param("ticker") String ticker,

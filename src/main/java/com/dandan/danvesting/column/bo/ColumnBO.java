@@ -13,14 +13,20 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dandan.danvesting.column.comment.bo.ColumnCommentBO;
+import com.dandan.danvesting.column.comment.model.ColumnCommentDetail;
 import com.dandan.danvesting.column.dao.ColumnDAO;
 import com.dandan.danvesting.column.model.Column;
+import com.dandan.danvesting.column.model.ColumnDetail;
 
 
 @Service
 public class ColumnBO {
 	@Autowired
 	private ColumnDAO columnDAO;
+	
+	@Autowired
+	private ColumnCommentBO columnCommentBO;
 	
 	public Map<String, String> ExtractColumnData(String columnURL) {
 		//매개변수로 받은 칼럼URL을 변수에 저장
@@ -109,9 +115,20 @@ public class ColumnBO {
 	}
 	
 	
-	//칼럼테이블 PK기반으로 칼럼가져오기
-	public Column getColumnByColumnId (int columnId) {
-		return columnDAO.selectColumnByColumnId(columnId);
+	
+	public ColumnDetail getColumnByColumnId (int userId, int columnId) {
+		ColumnDetail columnDetail = new ColumnDetail();
+		
+		//칼럼테이블 PK기반으로 칼럼가져오기
+		Column column = columnDAO.selectColumnByColumnId(columnId);
+		
+		//해당 칼럼의 댓글 데이터들 가져오기
+		List<ColumnCommentDetail> columnCommentDetails = columnCommentBO.getColumnComments(userId, columnId);
+		
+		columnDetail.setColumn(column);
+		columnDetail.setColumnCommentDetailList(columnCommentDetails);
+		
+		return columnDetail;
 	}
 	
 	

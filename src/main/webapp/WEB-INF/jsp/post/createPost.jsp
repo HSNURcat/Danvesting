@@ -40,7 +40,7 @@
 							<i class="bi bi-camera-fill display-4" id="beforeUpload"></i>
 							
 							<%-- 업로드 이후 --%>
-							<img alt="upload-img" src="#" class="d-none w-100 h-100" id="image-preview">
+							<img alt="upload-img" src="#" class="d-none" id="image-preview">
 							
 							<input type="file" id="input-file" class="d-none">
 						</div>

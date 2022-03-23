@@ -23,7 +23,7 @@ public class StockCommentLikeBO {
 		return stockCommentLikeDAO.deleteCommentLikeByUserId(userId, ticker, commentId);
 	}
 	
-	//postId, userId, commentId로 해당 사용자의 댓글 좋아요 여부 확인
+	//ticker, userId, commentId로 해당 사용자의 댓글 좋아요 여부 확인
 	public boolean isCommentLike(int userId, String ticker, int commentId) {
 		int count = stockCommentLikeDAO.selectIsCommentLikeByUserId(userId, ticker, commentId);
 			
@@ -34,7 +34,7 @@ public class StockCommentLikeBO {
 		}
 	}
 	
-	//postId, userId, commentId로 좋아요 여부 확인 후 좋아요 추가/삭제
+	//ticker, userId, commentId로 좋아요 여부 확인 후 좋아요 추가/삭제
 	public boolean stockCommentLike(String nickName, int userId, String ticker, int commentId) {
 			
 		//댓글의 좋아요 여부 확인

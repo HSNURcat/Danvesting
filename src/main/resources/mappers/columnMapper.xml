@@ -38,7 +38,7 @@
  			DESC;
  	</select>
  	
- 	<select id="selectColumnByColumnId" parameterType="int" resultType="com.dandan.danvesting.column.model.Column">
+ 	<select id="selectColumnByColumnId" parameterType="map" resultType="com.dandan.danvesting.column.model.Column">
  		SELECT
 			`id`
 			, `writer`

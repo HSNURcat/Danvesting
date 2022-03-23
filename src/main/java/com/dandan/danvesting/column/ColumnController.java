@@ -2,6 +2,9 @@ package com.dandan.danvesting.column;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dandan.danvesting.column.bo.ColumnBO;
 import com.dandan.danvesting.column.model.Column;
+import com.dandan.danvesting.column.model.ColumnDetail;
 
 @Controller
 public class ColumnController {
@@ -33,10 +37,14 @@ public class ColumnController {
 		return "column/columnList";
 	}
 	
+	
 	@GetMapping("/post/column_detail_view")
-	public String columnDetail(@RequestParam("columnId") int columnId, Model model) {
+	public String columnDetail(@RequestParam("columnId") int columnId, 
+			Model model, HttpServletRequest request) {
 		
-		Column columndetail = columnBO.getColumnByColumnId(columnId);
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
+		ColumnDetail columndetail = columnBO.getColumnByColumnId(userId, columnId);
 		
 		model.addAttribute("columnDetail", columndetail);
 		

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.dandan.danvesting.column.comment.dao.ColumnCommentDAO">
+ 	<insert id="insertComment" parameterType="map">
+ 		INSERT INTO `columnComment`
+ 		(
+ 			userId
+			, nickName
+			, columnId
+			, content
+			, createdAt
+			, updatedAt
+ 		) VALUES (
+ 			#{userId}
+ 			, #{nickName}
+ 			, #{columnId}
+ 			, #{content}
+ 			, now()
+ 			, now()
+ 		);
+ 	</insert>
+ 	
+ 	<select id="selectComments" parameterType="map" resultType="com.dandan.danvesting.column.comment.model.ColumnComment">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+			, `nickName`
+			, `columnId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`columnComment`
+ 		WHERE
+ 			`columnId` = #{columnId};
+ 	</select>
+ 	
+ </mapper>
+
+
+
+
+

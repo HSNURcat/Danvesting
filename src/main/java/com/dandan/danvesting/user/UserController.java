@@ -28,15 +28,15 @@ public class UserController {
 		return "user/signIn";
 	}
 	
-	@GetMapping("/sign_out")
+	@GetMapping("/logout")
 	public String signOut(HttpServletRequest request) {
 		//세션 정보 삭제
 		HttpSession session = request.getSession();
 		
 		//세션에 회원 정보 제거
-		session.removeAttribute("userId");
-		session.removeAttribute("userLoginId");
-		session.removeAttribute("userName");
+		session.removeAttribute("id");
+		session.removeAttribute("loginId");
+		session.removeAttribute("nickName");
 		
 		return "redirect:/user/sign_in_view";
 	}

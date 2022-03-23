@@ -49,7 +49,7 @@
 						
 						<%-- 로그아웃 --%>
 							<div class="col-6">
-								<a href="/user/sign_out">
+								<a href="/user/logout">
 									<span class="font-weight-bold text-white">로그아웃</span>
 								</a>
 							</div>
