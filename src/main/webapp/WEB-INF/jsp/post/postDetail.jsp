@@ -76,10 +76,35 @@
 				<div class="my-2 d-flex">
 					<%-- like부분 --%>
 					<div class="d-flex mr-5 align-items-center">
+						
+					<c:choose>
+					
+						<%-- 싫어요 상태가 true이면 좋아요 비활성화 --%>
+						<c:when test="${postDetail.postDislike }">
+						<div>
+							<i class="bi bi-hand-thumbs-up display-4 text-secondary"></i>
+						</div>
+						</c:when>
+						
+						<%-- 싫어요 상태가 false이면 좋아요 활성화 --%>
+						<c:otherwise>
 						<%-- like아이콘 --%>
 						<div>
+						
+						<c:choose>
+							<%-- 좋아요 상태가 true이면 붉은색 좋아요 --%>
+							<c:when test="${postDetail.postLike }">
+							<a id="likePostBtn" data-post-id="${postDetail.post.id }"><i class="bi bi-hand-thumbs-up-fill display-4 text-danger"></i></a>
+							</c:when>
+							
+							<c:otherwise>
 							<a id="likePostBtn" data-post-id="${postDetail.post.id }"><i class="bi bi-hand-thumbs-up display-4"></i></a>
+							</c:otherwise>
+						</c:choose>
 						</div>
+						</c:otherwise> 
+					
+					</c:choose>
 						
 						<%-- like 숫자 --%>
 						<div>
@@ -89,10 +114,35 @@
 					
 					<%-- dislike부분 --%>
 					<div class="d-flex align-items-center">
+					
+					<c:choose>
+					
+						<%-- 좋아요 상태가 true이면 싫어요 비활성화 --%>
+						<c:when test="${postDetail.postLike }">
+						<div>
+							<i class="bi bi-hand-thumbs-down display-4 text-secondary"></i>
+						</div>
+						</c:when>
+						
+						<%-- 좋아요 상태가 false이면 싫어요 활성화 --%>
+						<c:otherwise>
 						<%-- dislike아이콘 --%>
 						<div>
+						<c:choose>
+							<c:when test="${postDetail.postDislike }">
+							<a id="dislikePostBtn" data-post-id="${postDetail.post.id }"><i class="bi bi-hand-thumbs-down-fill display-4 text-primary"></i></a>
+							</c:when>
+						
+							<c:otherwise>
 							<a id="dislikePostBtn" data-post-id="${postDetail.post.id }"><i class="bi bi-hand-thumbs-down display-4"></i></a>
+							</c:otherwise>
+						
+						
+						</c:choose>
 						</div>
+						</c:otherwise>
+						
+					</c:choose>
 						
 						<%-- dislike 숫자 --%>
 						<div>
@@ -144,9 +194,22 @@
 						
 						<%-- 댓글 좋아요/싫어요 부분 --%>
 						<div class="col-2 d-flex">
+						
 							<%-- like부분 --%>
 							<div class="d-flex mr-5 align-items-center">
+							
 								<%-- like아이콘 --%>
+								<c:choose>
+								
+								<%-- 싫어요 상태가 true이면 좋아요 비활성화 --%>
+								<c:when test="${postComment.commentLikeDislike.commentDislike}">
+								<div>
+									<h3><i class="bi bi-hand-thumbs-up text-secondary"></i></h3>
+								</div>
+								</c:when>
+								
+								<%-- 싫어요 상태가 false이면 좋아요 활성화 --%>
+								<c:otherwise>
 								<div>
 									<a class="likeCommentBtn" data-post-id="${postDetail.post.id }" data-comment-id="${postComment.comment.id }" data-switch="${postComment.commentLikeDislike.commentLike}">
 									<c:choose>
@@ -160,6 +223,9 @@
 									</c:choose>
 									</a>
 								</div>
+								</c:otherwise>
+								
+								</c:choose>
 								
 								<%-- like 숫자 --%>
 								<div>
@@ -169,12 +235,22 @@
 							
 							<%-- dislike부분 --%>
 							<div class="d-flex align-items-center">
+							
 								<%-- dislike아이콘 --%>
+								<c:choose>
+								
+								<%-- 좋아요 상태가 true이면 실어요 비활성화 --%>
+								<c:when test="${postComment.commentLikeDislike.commentLike}">
+									<h3><i class="bi bi-hand-thumbs-down text-secondary"></i></h3>
+								</c:when>
+								
+								<%-- 좋아요 상태가 false이면 싫어요 활성화 --%>
+								<c:otherwise>
 								<div>
 									<a class="dislikeCommentBtn" data-post-id="${postDetail.post.id }" data-comment-id="${postComment.comment.id }"data-switch="${postComment.commentLikeDislike.commentDislike}">
 									<c:choose>
 										<c:when test="${postComment.commentLikeDislike.commentDislike}">
-										<h3><i class="bi bi-hand-thumbs-down-fill text-danger"></i></h3>
+										<h3><i class="bi bi-hand-thumbs-down-fill text-primary"></i></h3>
 										</c:when>
 										
 										<c:otherwise>
@@ -183,6 +259,9 @@
 									</c:choose>
 									</a>
 								</div>
+								</c:otherwise>
+								
+								</c:choose>
 								
 								<%-- dislike 숫자 --%>
 								<div>

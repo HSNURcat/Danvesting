@@ -10,8 +10,8 @@ public class PostDetail {
 	private Post post;//post테이블 컬럼들
 	private int postLikeCount;//게시물 좋아요 데이터
 	private int postDislikeCount;//게시물 좋아요 데이터
-	private boolean isPostLike; //게시물 좋아요 여부
-	private boolean isPostDislike; //게시물 싫어요 여부
+	private boolean postLike; //게시물 좋아요 여부
+	private boolean postDislike; //게시물 싫어요 여부
 	private List<CommentDetail> commentDetailList;//comment테이블 컬럼들 + 댓글 좋아요/싫어요
 	
 	public Post getPost() {
@@ -33,16 +33,16 @@ public class PostDetail {
 		this.postDislikeCount = postDislikeCount;
 	}
 	public boolean isPostLike() {
-		return isPostLike;
+		return postLike;
 	}
-	public void setPostLike(boolean isPostLike) {
-		this.isPostLike = isPostLike;
+	public void setPostLike(boolean postLike) {
+		this.postLike = postLike;
 	}
 	public boolean isPostDislike() {
-		return isPostDislike;
+		return postDislike;
 	}
-	public void setPostDislike(boolean isPostDislike) {
-		this.isPostDislike = isPostDislike;
+	public void setPostDislike(boolean postDislike) {
+		this.postDislike = postDislike;
 	}
 	public List<CommentDetail> getCommentDetailList() {
 		return commentDetailList;

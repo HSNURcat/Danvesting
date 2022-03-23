@@ -384,9 +384,21 @@
 						
 						<%-- 댓글 좋아요/싫어요 부분 --%>
 						<div class="col-2 d-flex">
+						
 							<%-- like부분 --%>
 							<div class="d-flex mr-5 align-items-center">
+							
 								<%-- like아이콘 --%>
+								<c:choose>
+								<%-- 싫어요 상태가 true이면 좋아요 비활성화 --%>
+								<c:when test="${columnCommentDetail.columnCommentLike.commentDislike}">
+								<div>
+									<h3><i class="bi bi-hand-thumbs-up text-secondary"></i></h3>
+								</div>
+								</c:when>
+								
+								<%-- 싫어요 상태가 false이면 좋아요 활성화 --%>
+								<c:otherwise>
 								<div>
 									<a class="likeCommentBtn" data-ticker="${companyInfo.ticker }" data-comment-id="${stockCommentDetail.stockComment.id }">
 									<c:choose>
@@ -400,6 +412,9 @@
 									</c:choose>
 									</a>
 								</div>
+								</c:otherwise>
+								
+								</c:choose>
 								
 								<%-- like 숫자 --%>
 								<div>
@@ -409,7 +424,17 @@
 							
 							<%-- dislike부분 --%>
 							<div class="d-flex align-items-center">
+							
 								<%-- dislike아이콘 --%>
+								<c:choose>
+								
+								<%-- 좋아요 상태가 true이면 실어요 비활성화 --%>
+								<c:when test="${columnCommentDetail.columnCommentLike.commentLike}">
+									<h3><i class="bi bi-hand-thumbs-down text-secondary"></i></h3>
+								</c:when>
+								
+								<%-- 좋아요 상태가 false이면 싫어요 활성화 --%>
+								<c:otherwise>
 								<div>
 									<a class="dislikeCommentBtn" data-ticker="${companyInfo.ticker }" data-comment-id="${stockCommentDetail.stockComment.id }">
 									<c:choose>
@@ -423,6 +448,9 @@
 									</c:choose>
 									</a>
 								</div>
+								</c:otherwise>
+								
+								</c:choose>
 								
 								<%-- dislike 숫자 --%>
 								<div>
