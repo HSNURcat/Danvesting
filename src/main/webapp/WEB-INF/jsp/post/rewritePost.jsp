@@ -56,7 +56,9 @@
 					<%--버튼구역 --%>
 					<div class="d-flex justify-content-between">
 						<div>
-							<button class="btn btn-danger" id="cancelBtn">Cancel</button>
+							<a class="text-dark" id="moreBtn" data-post-id="${postDetail.post.id }" href="#" data-toggle="modal" data-target="#exampleModalLong">
+								<button class="btn btn-danger">Cancel</button>
+							</a>
 						</div>
 						
 						<div>
@@ -69,6 +71,29 @@
 			<c:import url="/WEB-INF/jsp/include/footer.jsp"></c:import>
 		</div>
 	</body>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Cancel Confirmation</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Will you leave this rewrite page?<br>
+			(The contents what you write will not be saved.)	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">No I'll stay this page</button>
+	        <button type="button" class="btn btn-primary" id="cancelConfirm">Yes, I'll leave this page </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -171,6 +196,22 @@
 				}
 				
 			});
+			
+			
+			$("#moreBtn").on("click", function() {
+				let postId = $(this).data("post-id");
+				
+				//postId를 모달의 수정취소하기 버튼에 값을 부여한다.
+				$("#cancelConfirm").data("post-id", postId);
+			});
+			
+			$("#cancelConfirm").on("click", function() {
+				let postId = $(this).data("post-id");
+				
+				location.replace("/post/content/list_detail_view?postId=" + postId);
+			});
+			
+			
 		});
 		
 	</script>
