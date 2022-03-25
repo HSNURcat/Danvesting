@@ -88,6 +88,11 @@ public class GetAPIDataTest {
 		System.out.println("----------------------------------------------------------------------------------------------------------------------");
 		
 		//ticker만 출력
+		JsonPrimitive status = (JsonPrimitive)obj.get("status");
+		System.out.println(status.toString().replace("\"", ""));
+		System.out.println("----------------------------------------------------------------------------------------------------------------------");
+		
+		//ticker만 출력
 		JsonPrimitive ticker = (JsonPrimitive)obj.get("ticker");
 		System.out.println(ticker);
 		System.out.println("----------------------------------------------------------------------------------------------------------------------");

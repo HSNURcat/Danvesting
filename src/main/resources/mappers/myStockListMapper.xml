@@ -20,7 +20,8 @@
 	
 	<select id="selectMyStockList" parameterType="int" resultType="com.dandan.danvesting.stock.list.model.StockList">
 		SELECT
-			`userId`
+			id
+			, `userId`
 			, `ticker`
 			, `createdAt`
 			, `updatedAt`
@@ -30,6 +31,14 @@
 			`userId` = #{userId};
 	</select>
 	
+	<delete id="deleteMyStockList" parameterType="map">
+		DELETE FROM 
+			`myStockList`
+		WHERE
+			`userId` = #{userId}
+		AND
+			`id` = #{id};
+	</delete>
 	
 </mapper>
 

@@ -60,7 +60,7 @@ public class StockBO {
 		
 		//status만 떼서 DTO(stockBar)에 저장
 		JsonPrimitive statusInJSON = (JsonPrimitive)obj.get("status");
-		stockBar.setStatus(statusInJSON.toString());
+		stockBar.setStatus(statusInJSON.toString().replace("\"", ""));
 		
 		//queryCount만 떼서 DTO(stockBar)에 저장
 		JsonPrimitive queryCountInJSON = (JsonPrimitive)obj.get("queryCount");
@@ -117,6 +117,10 @@ public class StockBO {
 				
 		//result부분
 		JsonObject results = (JsonObject) obj.get("results");
+		
+		//status부분
+		JsonPrimitive status = (JsonPrimitive) obj.get("status");
+		companyInfo.setStatus(status.toString().replace("\"", ""));
 		
 		//종목이름
 		companyInfo.setTicker(ticker);

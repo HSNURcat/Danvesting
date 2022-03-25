@@ -22,6 +22,7 @@ public class CompanyInfo {
 	private String postalCode; //종목 본사 주소(우편번호)
 	private String phoneNumber; //전화번호
 	private String description; //종목설명
+	private String status; //검색 상태
 	
 	private List<StockCommentDetail> stockCommentDetails;// 종목 댓글들 + 좋아요/싫어요
 	
@@ -130,5 +131,13 @@ public class CompanyInfo {
 	public void setStockCommentDetails(List<StockCommentDetail> stockCommentDetails) {
 		this.stockCommentDetails = stockCommentDetails;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 }

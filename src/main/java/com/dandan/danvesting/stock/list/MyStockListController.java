@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,6 +42,24 @@ public class MyStockListController {
 		int userId = (Integer)session.getAttribute("id");
 		
 		int count = myStockListBO.addMyStock(userId, ticker);
+		
+		Map<String, String> result = new HashMap<String, String>();
+		if (count != 0) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "failure");
+		}
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("/stock/deleteStock")
+	public Map<String, String> deleteMyStock(@RequestParam("stockListId") int stockListId, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("id");
+		
+		int count = myStockListBO.deleteMyStock(userId, stockListId);
 		
 		Map<String, String> result = new HashMap<String, String>();
 		if (count != 0) {

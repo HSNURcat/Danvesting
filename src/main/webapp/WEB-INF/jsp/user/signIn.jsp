@@ -33,7 +33,6 @@
 				<div class="signUp-box">
 				
 					<div class="input-box d-flex flex-column align-items-between my-5">
-						
 						<div class="d-flex m-3">
 							<div class="col-3">
 								<span>ID</span>
@@ -51,7 +50,7 @@
 								<input type="password" class="form-control col-11" id="password">
 							</div>
 						</div>
-						
+					
 						<div class="d-flex justify-content-between my-3 mx-5">
 							<div>
 								<a href="/user/sign_up_view">회원가입</a>
@@ -73,7 +72,9 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#signIn-btn").on("click",function() {
+			
+			//로그인 함수 생성
+			function login() {
 				var userId = $("#userId").val();
 				var password = $("#password").val();
 				
@@ -103,7 +104,18 @@
 						alert("에러 발생");
 					}
 				});
-				
+			}
+			
+			//엔터키 눌렀을때 로그인 함수 실행
+			$(document).keyup(function(e) {
+				if(e.keyCode == 13) {
+					login();
+				}
+			});
+			
+			//검색버튼 눌렀을때 로그인 함수 실행
+			$("#signIn-btn").on("click",function() {
+				login();
 			});
 		});
 	</script>

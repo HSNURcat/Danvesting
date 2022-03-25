@@ -25,10 +25,14 @@ public class MyStockListBO {
 		return myStockListDAO.selectMyStockList(userId);
 	}
 	
-	//해당 사용자의 종목 저장
+	//해당 사용자의 특정 종목 저장
 	public int addMyStock(int userId, String ticker) {
 		return myStockListDAO.insertMyStockList(userId, ticker);
 	}
 	
-	
+	//해당 사용자의 특정 종목 삭제
+	public int deleteMyStock(int userId, int stockListId) {
+		return myStockListDAO.deleteMyStockList(userId, stockListId);
+	}
+		
 }

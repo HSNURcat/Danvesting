@@ -41,6 +41,11 @@ public class GetAPICompanyInfoDataTest {
 		System.out.println("result부분 출력 : " + results);
 		System.out.println("----------------------------------------------------------------------------------------------------------------------");
 		
+		//result부분 출력
+		JsonPrimitive status = (JsonPrimitive) obj.get("status");
+		System.out.println("status부분 출력 : " + status);
+		System.out.println("----------------------------------------------------------------------------------------------------------------------");
+		
 		//종목이름출력
 		JsonPrimitive name = (JsonPrimitive) results.get("name");
 		System.out.println("종목이름 출력 : " + name);

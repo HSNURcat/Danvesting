@@ -36,6 +36,12 @@ public class StockController {
 		
 		model.addAttribute("companyInfo", companyInfo);
 		return "stock/stockDetail";
+			
+	}
+	
+	@GetMapping("/stock/not_found")
+	public String notFoundPage() {
+		return"stock/notFoundPage";
 	}
 	
 }

@@ -28,6 +28,7 @@
 		google.charts.load('current', {'packages':['corechart']});
 		
 		$(document).ready(function() {
+			
 			//오늘날짜 도출
 			let date = new Date();
 			let year = date.getFullYear();
@@ -59,12 +60,13 @@
 				url:"/post/stock/detail_price",
 				data:{"ticker":ticker, "search_from_date":defaultFromDate },
 				success:function(data) {
+					
 					//RestController로부터 결과값 받아옴
 					stockBar = data.stockBar;
-					
+						
 					//Data가공 후 price그래프 그리는 함수 실행
 					priceBar(stockBar);
-					
+						
 					//Data가공 후 거래량 그래프 그리는 함수 실행
 					tradingVolume(stockBar);
 				}

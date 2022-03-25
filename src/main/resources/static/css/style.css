@@ -101,3 +101,7 @@ img{
 .borderBox {
 	border: 1px solid;
 }
+
+.stockListLink:hover {
+	background-color: #F8F9FA;
+}

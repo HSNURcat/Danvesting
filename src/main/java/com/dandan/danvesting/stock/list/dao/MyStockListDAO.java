@@ -13,4 +13,7 @@ public interface MyStockListDAO {
 	public List<StockList> selectMyStockList(@Param("userId") int userId);
 	
 	public int insertMyStockList(@Param("userId") int userId, @Param("ticker") String ticker); 
+
+	public int deleteMyStockList(@Param("userId") int userId, @Param("id") int stockListId); 
+	
 }
