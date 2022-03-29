@@ -1,7 +1,7 @@
 # danvesting
 
 ### 포트폴리오 접속
-* 주소 : [danvesting](http://3.35.222.84:8080/user/sign_in_view)
+* 주소 : [danvesting](http://3.36.61.161:8080/user/sign_in_view)
 * test계정 : ID - asdf@naver.com  PW - 12345
 
 ### 프로젝트 설명
@@ -14,7 +14,7 @@
 * DB & URL설계
   https://docs.google.com/spreadsheets/d/1TZ5owEAYrdZrynSVB5nclCb-YuPhLwtDK49aidd3Y_0/edit?usp=sharing
   
-###주요기능
+### 주요기능
 * 회원가입, 로그인, 회원정보 수정
   * packages : [com.dandan.danvesting/user/*](https://github.com/HSNURcat/danvesting/tree/master/src/main/java/com/dandan/danvesting/user)
   * 회원가입View : [/webapp/WEB-INF/jsp/user/signUp.jsp](https://github.com/HSNURcat/danvesting/blob/master/src/main/webapp/WEB-INF/jsp/user/signUp.jsp)
@@ -37,6 +37,25 @@
 * 종목(주식)정보 with Robinhood API(polygon.io)
   * packages : [com.dandan.danvesting/stock/*](https://github.com/HSNURcat/danvesting/tree/master/src/main/java/com/dandan/danvesting/stock)
   * View : [/webapp/WEB-INF/jsp/stock/stockDetail.jsp](https://github.com/HSNURcat/danvesting/blob/master/src/main/webapp/WEB-INF/jsp/stock/stockDetail.jsp)
+
+### 프로젝트 흐름
+* 회원가입  
+  ![signUp](demo/sign_up.gif)
+ 
+* 로그인  
+  ![signIn](demo/sign_in.gif)
+
+* 게시판 게시물 작성  
+  ![addPost](demo/add_post2.gif)
+
+* 좋아요/싫어요 추가 및 댓글작성  
+  ![likeHateComment](demo/like_hate_comment.gif)
+
+* 종목검색  
+  ![searchStock](demo/search_stock.gif)
+
+* 종목 리스트 저장  
+  ![addStockList](demo/add_stock_list.gif)
 
 ### 외부 라이브러리 라이센스
 * Tomcat [Apache Licesne](https://www.apache.org/licenses/LICENSE-2.0)
