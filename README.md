@@ -41,3 +41,7 @@
 ### 외부 라이브러리 라이센스
 * Tomcat [Apache Licesne](https://www.apache.org/licenses/LICENSE-2.0)
 * Robinhood [polygon.io](https://polygon.io/eula)
+
+### 향후 구현 계획
+* 사용자 계정 찾기 기능 구현하기(ID, 임시비밀번호 e-mail 발송)
+* XBRL파일 형식의 상장기업 재무정보Data 연동, 재무정보 표시 구현하기
