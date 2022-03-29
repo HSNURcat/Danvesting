@@ -32,6 +32,8 @@
  		FROM
  			`like`
  		WHERE
+ 			`postOrComment` = 1
+ 		AND
  			`postId` = #{postId}
  		AND 
  			`commentId` IS NULL
@@ -45,6 +47,8 @@
  		FROM
  			`like`
  		WHERE
+ 			`postOrComment` = 1
+ 		AND
  			`postId` = #{postId}
  		AND 
  			`likeOrDislike` = 1
@@ -56,6 +60,8 @@
  		DELETE FROM 
  			`like`
  		WHERE
+ 			`postOrComment` = 1
+ 		AND
  			`postId` = #{postId}
  		AND 
  			`likeOrDislike` = 1
@@ -92,6 +98,8 @@
  		FROM
  			`like`
  		WHERE
+ 			`postOrComment` = 1
+ 		AND
  			`postId` = #{postId}
  		AND 
  			`commentId` IS NULL
@@ -105,6 +113,8 @@
  		FROM
  			`like`
  		WHERE
+ 			`postOrComment` = 1
+ 		AND
  			`postId` = #{postId}
  		AND 
  			`likeOrDislike` = 0
@@ -116,6 +126,8 @@
  		DELETE FROM 
  			`like`
  		WHERE
+ 			`postOrComment` = 1
+ 		AND
  			`postId` = #{postId}
  		AND 
  			`likeOrDislike` = 0
