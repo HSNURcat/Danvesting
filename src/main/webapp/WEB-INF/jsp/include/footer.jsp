@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 		
 		<footer class="d-flex justify-content-center mt-5">
-			Copyright 2022. Dandan. all rights reserved.
+			Copyright 2022. DanDanDevelop. all rights reserved.
 		</footer>

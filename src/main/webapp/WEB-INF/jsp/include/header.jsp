@@ -6,7 +6,7 @@
 					<%-- 로고 --%>
 					<div class="col-4">
 						<a href="/main" class="text-decoration-none text-white">
-							<span class="display-4 font-weight-bold">Danvesting</span>
+							<span class="display-4 font-weight-bold">DanDanDevelop</span>
 						</a>
 					</div>
 					

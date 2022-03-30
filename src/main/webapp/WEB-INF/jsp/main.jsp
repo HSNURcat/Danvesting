@@ -46,7 +46,7 @@
 						<div>
 							<%-- 반복 시작 --%>
 							<c:forEach var="column" items="${mainPageData.column}" end="6">
-							<a href="http://localhost:8080/post/column_detail_view?columnId=${column.id }" class="text-decoration-none text-dark">
+							<a href="/post/column_detail_view?columnId=${column.id }" class="text-decoration-none text-dark">
 							<div class="d-flex my-2">
 								<div class="col-2 text-center">
 									${column.writer }

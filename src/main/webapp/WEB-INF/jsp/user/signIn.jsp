@@ -22,7 +22,7 @@
 		<div id="wrap">
 			<header class="page-header d-flex mb-5">
 				<div class="col-4">
-					<span class="display-4 font-weight-bold">Danvesting</span>
+					<span class="display-4 font-weight-bold">DanDanDevelope</span>
 				</div>
 				<div class="col-8">
 				
