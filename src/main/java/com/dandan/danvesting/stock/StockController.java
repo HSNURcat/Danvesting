@@ -26,22 +26,22 @@ public class StockController {
 	@GetMapping("/stock/detail_view")
 	public String getStockDetail(@RequestParam("ticker")String ticker, 
 			Model model, HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("id");
-		
-		CompanyInfo companyInfo = new CompanyInfo();
-		
-		companyInfo = stockBO.getCompanyInfoJSON(userId, ticker);
-		
-		model.addAttribute("companyInfo", companyInfo);
-		return "stock/stockDetail";
+		try {
+			HttpSession session = request.getSession();
+			int userId = (Integer)session.getAttribute("id");
 			
-	}
-	
-	@GetMapping("/stock/not_found")
-	public String notFoundPage() {
-		return"stock/notFoundPage";
+			CompanyInfo companyInfo = new CompanyInfo();
+			
+			companyInfo = stockBO.getCompanyInfoJSON(userId, ticker);
+			
+			model.addAttribute("companyInfo", companyInfo);
+			return "stock/stockDetail";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "stock/notFoundPage";
+		}
+			
 	}
 	
 }
