@@ -21,8 +21,10 @@
 	<body>
 		<div id="wrap">
 			<header class="page-header d-flex mb-5">
-				<div class="col-4">
-					<span class="display-4 font-weight-bold">DanDanDevelope</span>
+				<div class="col-4 d-flex align-items-center">
+					<a href="/user/sign_in_view" class="text-decoration-none text-white">
+						<h1>DanDanDevelop</h1>
+					</a>
 				</div>
 				<div class="col-8">
 				

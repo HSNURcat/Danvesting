@@ -4,16 +4,16 @@
 			<header>
 				<div class="page-header d-flex">
 					<%-- 로고 --%>
-					<div class="col-4">
+					<div class="col-4 d-flex align-items-center">
 						<a href="/main" class="text-decoration-none text-white">
-							<span class="display-4 font-weight-bold">DanDanDevelop</span>
+							<h1>DanDanDevelop</h1>
 						</a>
 					</div>
 					
 					<%-- 검색창 --%>
 					<div class="col-4 d-flex justify-content-center align-items-center">
 						<div class="col-12 d-flex">
-							<input type="text" class="form-control" id="searchObj">
+							<input type="text" class="form-control" id="searchObj" placeholder="Please input Ticker">
 							<button type="button" class="btn btn-light" id="searchBtn">search</button>
 						</div>
 					</div>
