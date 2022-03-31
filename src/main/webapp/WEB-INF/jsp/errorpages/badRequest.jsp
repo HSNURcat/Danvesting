@@ -19,15 +19,15 @@
 		<link rel="stylesheet"  href="/static/css/style.css" type="text/css">
 	
 		<meta charset="UTF-8">
-		<title>Too many request</title>
+		<title>Bad request</title>
 	</head>
 	<body>
 		<div id="wrap">
 			<c:import url="/WEB-INF/jsp/include/header.jsp" />
 			
 			<section>
-				<div> <h1> Are you Human? Not a Computer?  </h1> </div>
-				<div> <h3> Too many request per minute please try again after moment :)</h3> </div>
+				<div> <h1> Bad request  </h1> </div>
+				<div> <h3> Please check your URL input area :)</h3> </div>
 				<div> <img alt="notFoundImg" src="/static/image/No_Result_img.jpg"> </div>
 			</section>
 			
