@@ -181,7 +181,9 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		
-		$("#addCommentBtn").on("click", function() {
+		$("#addCommentBtn").on("click", function(e) {
+			e.preventDefault();	
+			
 			let columnId = $(this).data("column-id");
 			let comment = $("#commentText").val();
 			
@@ -203,7 +205,9 @@
 		});
 		
 		//좋아요 버튼 클릭시
-		$(".likeCommentBtn").on("click", function() {
+		$(".likeCommentBtn").on("click", function(e) {
+			e.preventDefault();
+			
 			let columnId = $(this).data("column-id");
 			let commentId = $(this).data("comment-id");
 			
@@ -222,7 +226,9 @@
 		});
 		
 		//싫어요 버튼 클릭시
-		$(".dislikeCommentBtn").on("click", function() {
+		$(".dislikeCommentBtn").on("click", function(e) {
+			e.preventDefault();
+			
 			let columnId = $(this).data("column-id");
 			let commentId = $(this).data("comment-id");
 			

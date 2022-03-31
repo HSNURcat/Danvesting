@@ -340,7 +340,9 @@
 			});
 			
 			
-			$("#addCommentBtn").on("click", function() {
+			$("#addCommentBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var postId = $(this).data("post-id");
 				var comment = $("#commentText").val();
 				
@@ -362,7 +364,9 @@
 			});
 			
 			//좋아요 버튼 클릭시
-			$(".likeCommentBtn").on("click", function() {
+			$(".likeCommentBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var postId = $(this).data("post-id");
 				var commentId = $(this).data("comment-id");
 				
@@ -381,7 +385,9 @@
 			});
 			
 			//싫어요 버튼 클릭시
-			$(".dislikeCommentBtn").on("click", function() {
+			$(".dislikeCommentBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var postId = $(this).data("post-id");
 				var commentId = $(this).data("comment-id");
 				
@@ -400,7 +406,9 @@
 			});
 			
 			//삭제버튼 클릭시
-			$("#deletePostBtn").on("click", function() {
+			$("#deletePostBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var postId = $(this).data("post-id");
 				
 				$.ajax({//권한 조회
