@@ -220,7 +220,9 @@
 				});
 			});
 			
-			$("#addCommentBtn").on("click", function() {
+			$("#addCommentBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var ticker = $(this).data("ticker");
 				var cik = $(this).data("cik");
 				var comment = $("#commentText").val();
@@ -243,7 +245,9 @@
 			});
 			
 			//좋아요 버튼 클릭시
-			$(".likeCommentBtn").on("click", function() {
+			$(".likeCommentBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var ticker = $(this).data("ticker");
 				var commentId = $(this).data("comment-id");
 				
@@ -262,7 +266,9 @@
 			});
 			
 			//싫어요 버튼 클릭시
-			$(".dislikeCommentBtn").on("click", function() {
+			$(".dislikeCommentBtn").on("click", function(e) {
+				e.preventDefault();
+				
 				var ticker = $(this).data("ticker");
 				var commentId = $(this).data("comment-id");
 				
@@ -393,7 +399,7 @@
 								<%-- like아이콘 --%>
 								<c:choose>
 								<%-- 싫어요 상태가 true이면 좋아요 비활성화 --%>
-								<c:when test="${columnCommentDetail.columnCommentLike.commentDislike}">
+								<c:when test="${stockCommentDetail.stockCommentLike.commentDislike}">
 								<div>
 									<h3><i class="bi bi-hand-thumbs-up text-secondary"></i></h3>
 								</div>
@@ -431,7 +437,7 @@
 								<c:choose>
 								
 								<%-- 좋아요 상태가 true이면 실어요 비활성화 --%>
-								<c:when test="${columnCommentDetail.columnCommentLike.commentLike}">
+								<c:when test="${stockCommentDetail.stockCommentLike.commentLike}">
 									<h3><i class="bi bi-hand-thumbs-down text-secondary"></i></h3>
 								</c:when>
 								
