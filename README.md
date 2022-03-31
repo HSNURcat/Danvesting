@@ -1,4 +1,6 @@
 # danvesting
+### 포트폴리오PPT
+[portfolio](portfolioPPT.pdf)
 
 ### 포트폴리오 접속
 * 주소 : [danvesting](http://3.36.61.161:8080/user/sign_in_view)
