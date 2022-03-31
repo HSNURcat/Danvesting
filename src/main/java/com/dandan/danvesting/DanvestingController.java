@@ -25,4 +25,44 @@ public class DanvestingController {
 		
 		return "main";
 	}
+	
+//	@GetMapping("/not_found")
+//	public String notfound() {
+//		return "errorpages/notFoundPage";
+//	}
+	
+	@GetMapping("/indices/**")
+	public String notfound2() {
+		return "errorpages/notFoundPage";
+	}
+	
+	@GetMapping("/commodities/**")
+	public String notfound3() {
+		return "errorpages/notFoundPage";
+	}
+	
+	@GetMapping("/economic-calendar/**")
+	public String notfound4() {
+		return "errorpages/notFoundPage";
+	}
+	@GetMapping("/equities/**")
+	public String notfound5() {
+		return "errorpages/notFoundPage";
+	}
+	@GetMapping("/rates-bonds/**")
+	public String notfound6() {
+		return "errorpages/notFoundPage";
+	}
+	@GetMapping("/currencies/**")
+	public String notfound7() {
+		return "errorpages/notFoundPage";
+	}
+	@GetMapping("/etfs/**")
+	public String notfound8() {
+		return "errorpages/notFoundPage";
+	}
+	@GetMapping("/crypto/**")
+	public String notfound9() {
+		return "errorpages/notFoundPage";
+	}
 }

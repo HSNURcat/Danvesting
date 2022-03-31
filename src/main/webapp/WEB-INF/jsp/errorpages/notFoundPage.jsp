@@ -27,7 +27,6 @@
 			
 			<section>
 				<div> <h1> Sorry, We couldn't find any result.  </h1> </div>
-				<div> <h3> Please check your ticker again :)</h3> </div>
 				<div> <img alt="notFoundImg" src="/static/image/No_Result_img.jpg"> </div>
 			</section>
 			
