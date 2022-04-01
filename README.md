@@ -1,4 +1,6 @@
 # danvesting
+### 포트폴리오PPT
+[portfolio](portfolioPPT.pdf)
 
 ### 포트폴리오 접속
 * 주소 : [danvesting](http://3.36.61.161:8080/user/sign_in_view)
@@ -58,9 +60,16 @@
   ![addStockList](demo/add_stock_list.gif)
 
 ### 외부 라이브러리 라이센스
-* Tomcat [Apache Licesne](https://www.apache.org/licenses/LICENSE-2.0)
+* Tomcat [Apache Licesne 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Robinhood [polygon.io](https://polygon.io/eula)
+* MySQL [GPLv2 or proprietary](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+* Mybatis [Apache Licesne 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* bootstrap [MIT License](https://opensource.org/licenses/MIT)
+* jQuery [MIT License](https://opensource.org/licenses/MIT)
+* Jsoup [Jsoup License](https://jsoup.org/license)
+* Gson [Apache Licesne 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ### 향후 구현 계획
+* 비대해진 코드들 클래스로 분리시켜서 단순화하기(구조적 리팩토링)
 * 사용자 계정 찾기 기능 구현하기(ID, 임시비밀번호 e-mail 발송)
 * XBRL파일 형식의 상장기업 재무정보Data 연동, 재무정보 표시 구현하기
