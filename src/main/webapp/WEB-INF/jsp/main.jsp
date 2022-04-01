@@ -19,7 +19,7 @@
 		<link rel="stylesheet"  href="/static/css/style.css" type="text/css">
 	
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>DanDanDevelope</title>
 	</head>
 	<body>
 		<div id="wrap">
