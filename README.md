@@ -3,7 +3,7 @@
 [portfolio](portfolioPPT.pdf)
 
 ### 포트폴리오 접속
-* 주소 : [danvesting](http://3.36.61.161:8080/user/sign_in_view)
+* 주소 : [danvesting](http://www.dandandevelop.com:8080/main)
 * test계정 : ID - asdf@naver.com  PW - 12345
 
 ### 프로젝트 설명
