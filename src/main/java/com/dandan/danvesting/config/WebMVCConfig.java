@@ -19,7 +19,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/**")//클라이언트에서 접근하도록 하는 path (/images/하위 모든 폴더의 파일들에 접근하도록)
-		.addResourceLocations("file:/" + FileManageService.FILE_UPLOAD_PATH);
+		.addResourceLocations("file://" + FileManageService.FILE_UPLOAD_PATH);
 	}
 	
 	@Override
