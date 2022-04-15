@@ -2,6 +2,10 @@
 ### 포트폴리오PPT
 [portfolio](portfolioPPT.pdf)
 
+:loudspeaker: 긴급 공지 :loudspeaker:
+현재 원인미상 AWS 서버 이상으로 4월 15일 이후로 접속이 안되는 중입니다.
+최소 4월 16일 ~ 최대 4월 17일 사이에 해결하도록 하겠습니다 :kissing_heart:
+
 ### 포트폴리오 접속
 * 주소 : [danvesting](http://www.dandandevelop.com:8080/main)
 * test계정 : ID - asdf@naver.com  PW - 12345
