@@ -116,6 +116,11 @@
 					return;
 				}
 				
+				if(file == "") {
+					alert("이미지를 첨부해주세요");
+					return;
+				}
+				
 				if(postText == "") {
 					alert("게시물을 입력해주세요");
 					return;
