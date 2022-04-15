@@ -77,13 +77,7 @@
 						location.href="/post/stock/detail_view?ticker=" + ticker;
 					}
 					
-					//엔터키 눌렀을때 검색 함수 실행
-					$(document).keyup(function(e) {
-						if(e.keyCode == 13) {
-							search();
-						}
-					})
-					
+										
 					//검색 버튼 눌렀을때 검색 함수 실행
 					$("#searchBtn").on("click", function() {
 						search();
